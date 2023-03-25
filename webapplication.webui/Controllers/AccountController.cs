@@ -1,0 +1,38 @@
+using webapplication.entity.Identity;
+using webapplication.webui.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using webapplication.webui;
+
+namespace webapplication.webui.Controllers
+{
+    [Authorize]
+    public class AccountController : Controller
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signinManager;
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signinManager)
+        {
+            _userManager = userManager;
+            _signinManager = signinManager;
+        }
+        public async Task<IActionResult> Index()
+        {
+            ViewData["Title"] = "Profilim";
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+                return View();
+            var model = new AccountViewModel
+            {
+                User = user,
+            };
+            return View(model);
+        }
+        public IActionResult EditProfile()
+        {
+            ViewData["Title"] = "Profil Düzenle";
+            return View();
+        }
+    }
+}

@@ -1,0 +1,14 @@
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.csproj.AssemblyReference.cache
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.AssemblyInfoInputs.cache
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.AssemblyInfo.cs
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.csproj.CoreCompileInputs.cache
+C:\Users\samet\Desktop\WebApplication\webapplication.core\bin\Debug\net6.0\webapplication.core.deps.json
+C:\Users\samet\Desktop\WebApplication\webapplication.core\bin\Debug\net6.0\webapplication.core.runtimeconfig.json
+C:\Users\samet\Desktop\WebApplication\webapplication.core\bin\Debug\net6.0\webapplication.core.dll
+C:\Users\samet\Desktop\WebApplication\webapplication.core\bin\Debug\net6.0\webapplication.core.pdb
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.dll
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\refint\webapplication.core.dll
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.pdb
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\webapplication.core.genruntimeconfig.cache
+C:\Users\samet\Desktop\WebApplication\webapplication.core\obj\Debug\net6.0\ref\webapplication.core.dll
