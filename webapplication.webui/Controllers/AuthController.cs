@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using webapplication.webui.ViewModels;
-
 namespace webapplication.webui.Controllers
 {
     [AllowAnonymous]
@@ -72,21 +71,48 @@ namespace webapplication.webui.Controllers
         }
         public async Task<IActionResult> GoogleCallback()
         {
-            var authResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            if (!authResult.Succeeded)
+            var result = HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme).Result;
+            if (!result.Succeeded)
             {
                 return RedirectToAction(nameof(Login));
             }
-            var claims = new List<Claim>
+            var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+            if (email == null)
             {
-                new Claim(ClaimTypes.Email, authResult.Principal.FindFirst(ClaimTypes.Email)?.Value),
-                new Claim(ClaimTypes.Name, authResult.Principal.FindFirst(ClaimTypes.Name)?.Value),
-                new Claim(ClaimTypes.NameIdentifier, authResult.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value)
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Login));
+            }
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+                var newUser = new ApplicationUser { UserName = email, Email = email, Name = "", LastName = "" };
+                if (name != null)
+                {
+                    var nameParts = name.Split(' ');
+                    if (nameParts.Length > 0)
+                    {
+                        newUser.Name = nameParts[0];
+                    }
+                    if (nameParts.Length > 1)
+                    {
+                        newUser.LastName = nameParts[1];
+                    }
+                }
+                var createResult = await _userManager.CreateAsync(newUser);
+                if (!createResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+                user = newUser;
+            }
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+            identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+            identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+            var authProperties = new AuthenticationProperties();
+            authProperties.IsPersistent = true;
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties).Wait();
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult Register()

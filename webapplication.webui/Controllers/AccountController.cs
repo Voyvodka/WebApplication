@@ -3,8 +3,6 @@ using webapplication.webui.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using webapplication.webui;
-
 namespace webapplication.webui.Controllers
 {
     [Authorize]

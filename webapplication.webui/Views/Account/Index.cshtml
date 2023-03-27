@@ -1,6 +1,6 @@
 @model AccountViewModel
 @{
-    if(Model.User.ImagePath == null)
+    if (Model.User.ImagePath == null)
     {
         Model.User.ImagePath = "/assets/media/avatars/300-1.jpg";
     }
@@ -323,7 +323,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <span class="fw-semibold text-gray-800 fs-6">@Model.User.Surname</span>
+                                <span class="fw-semibold text-gray-800 fs-6">@Model.User.LastName</span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -341,11 +341,13 @@
                             <!--begin::Col-->
                             <div class="col-lg-8 d-flex align-items-center">
                                 <span class="fw-bold fs-6 text-gray-800 me-2">@Model.User.PhoneNumber</span>
-                                @if(Model.User.PhoneNumberConfirmed){
-                                    <span class="badge badge-success">Doğrulandı</span>
+                                @if (Model.User.PhoneNumberConfirmed)
+                                {
+                                            <span class="badge badge-success">Doğrulandı</span>
                                 }
-                                else{
-                                    <span class="badge badge-danger">Doğrulanmadı</span>
+                                else
+                                {
+                                            <span class="badge badge-danger">Doğrulanmadı</span>
                                 }
                             </div>
                             <!--end::Col-->

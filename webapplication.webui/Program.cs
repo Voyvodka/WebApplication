@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(x =>
@@ -28,14 +26,23 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
     options.Cookie.HttpOnly = true;
 });
-builder.Services.AddAuthentication().AddGoogle(options =>
-{
-    IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
-    options.ClientId = googleAuthNSection["ClientId"];
-    options.ClientSecret = googleAuthNSection["ClientSecret"];
-});
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie("Cookies", options =>
+    {
+        options.LoginPath = "/giris-yap";
+        options.LogoutPath = "/cikis-yap";
+        options.Cookie.Name = "auth_cookie";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+        options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+        options.Cookie.HttpOnly = true;
+    }).AddGoogle(options =>
+    {
+        IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+        options.ClientId = googleAuthNSection["ClientId"];
+        options.ClientSecret = googleAuthNSection["ClientSecret"];
+        options.CallbackPath = new PathString("/auth/google-callback");
+    });
 var app = builder.Build();
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -61,6 +68,7 @@ app.UseStaticFiles(new StaticFileOptions()
 });
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
 app.UseEndpoints(endpoints =>
@@ -80,6 +88,10 @@ app.UseEndpoints(endpoints =>
         pattern: "kayit-ol",
         defaults: new { controller = "Auth", action = "Register" }
     );
+    endpoints.MapControllerRoute(
+        name: "GoogleLogin",
+        pattern: "signin-google",
+        defaults: new { controller = "Auth", action = "GoogleLogin" });
     endpoints.MapControllerRoute(
         name: "cikis-yap",
         pattern: "cikis-yap",
