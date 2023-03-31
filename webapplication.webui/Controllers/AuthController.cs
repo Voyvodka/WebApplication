@@ -13,16 +13,16 @@ namespace webapplication.webui.Controllers
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signinManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signinManager)
         {
             _userManager = userManager;
-            _signinManager = signinManager;
+            _signInManager = signinManager;
         }
         public async Task<IActionResult> Logout()
         {
             ViewData["Title"] = "Çıkış yapılıyor...";
-            await _signinManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Auth");
         }
         [HttpGet]
@@ -45,7 +45,7 @@ namespace webapplication.webui.Controllers
                     ModelState.AddModelError(string.Empty, "Geçersiz giriş denemesi.");
                     return View(p);
                 }
-                var result = await _signinManager.PasswordSignInAsync(user.UserName, p.Password, p.RememberMe, true);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, p.Password, p.RememberMe, true);
                 if (result.Succeeded)
                 {
                     string returnUrl = HttpContext.Request.Query["ReturnUrl"];
@@ -63,56 +63,46 @@ namespace webapplication.webui.Controllers
                 return View(p);
             }
         }
-        public IActionResult GoogleLogin()
+        public async Task<IActionResult> GoogleLogin(string returnUrl)
         {
-            var redirectUrl = Url.Action(nameof(GoogleCallback), "Auth");
-            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+            var redirectUrl = Url.Action(nameof(GoogleCallback), "Auth", new { ReturnUrl = returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return Challenge(properties, "Google");
         }
-        public async Task<IActionResult> GoogleCallback()
+        public async Task<IActionResult> GoogleCallback(string returnUrl = "/")
         {
-            var result = HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme).Result;
-            if (!result.Succeeded)
+            var loginInfo = await _signInManager.GetExternalLoginInfoAsync();
+            if (loginInfo == null)
             {
                 return RedirectToAction(nameof(Login));
             }
-            var email = result.Principal.FindFirstValue(ClaimTypes.Email);
-            if (email == null)
+            var signInResult = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, true);
+            if (signInResult.Succeeded)
             {
-                return RedirectToAction(nameof(Login));
+                return LocalRedirect(returnUrl);
             }
-            var user = await _userManager.FindByEmailAsync(email);
+            var userEmail = loginInfo.Principal.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(userEmail);
             if (user == null)
             {
-                var name = result.Principal.FindFirstValue(ClaimTypes.Name);
-                var newUser = new ApplicationUser { UserName = email, Email = email, Name = "", LastName = "" };
-                if (name != null)
+                var firstName = loginInfo.Principal.FindFirstValue(ClaimTypes.GivenName);
+                var lastName = loginInfo.Principal.FindFirstValue(ClaimTypes.Surname);
+                var username = loginInfo.Principal.FindFirstValue(ClaimTypes.Name) ?? userEmail.Split('@')[0];
+                user = new ApplicationUser
                 {
-                    var nameParts = name.Split(' ');
-                    if (nameParts.Length > 0)
-                    {
-                        newUser.Name = nameParts[0];
-                    }
-                    if (nameParts.Length > 1)
-                    {
-                        newUser.LastName = nameParts[1];
-                    }
-                }
-                var createResult = await _userManager.CreateAsync(newUser);
-                if (!createResult.Succeeded)
+                    UserName = username,
+                    Email = userEmail,
+                    FirstName = firstName,
+                    LastName = lastName,
+                };
+                var result = await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
                 {
                     return RedirectToAction(nameof(Login));
                 }
-                user = newUser;
             }
-            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-            identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
-            var authProperties = new AuthenticationProperties();
-            authProperties.IsPersistent = true;
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties).Wait();
-            return RedirectToAction("Index", "Home");
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            return LocalRedirect(returnUrl);
         }
         [HttpGet]
         public IActionResult Register()

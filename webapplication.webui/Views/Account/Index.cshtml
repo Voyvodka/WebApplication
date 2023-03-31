@@ -311,7 +311,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">
-                                <span class="fw-bold fs-6 text-gray-800">@Model.User.Name</span>
+                                <span class="fw-bold fs-6 text-gray-800">@Model.User.FirstName</span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -343,11 +343,11 @@
                                 <span class="fw-bold fs-6 text-gray-800 me-2">@Model.User.PhoneNumber</span>
                                 @if (Model.User.PhoneNumberConfirmed)
                                 {
-                                            <span class="badge badge-success">Doğrulandı</span>
+                                    <span class="badge badge-success">Doğrulandı</span>
                                 }
                                 else
                                 {
-                                            <span class="badge badge-danger">Doğrulanmadı</span>
+                                    <span class="badge badge-danger">Doğrulanmadı</span>
                                 }
                             </div>
                             <!--end::Col-->
