@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\fontawesome.css",
-      "PackagePath": "staticwebassets\\assets\\css\\fontawesome.css"
-    },
-    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\style.bundle.css",
       "PackagePath": "staticwebassets\\assets\\css\\style.bundle.css"
     },
@@ -353,8 +349,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\custom\\authentication\\sign-in\\i18n.js"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\custom\\authentication\\sign-in\\two-steps.js",
-      "PackagePath": "staticwebassets\\assets\\js\\custom\\authentication\\sign-in\\two-steps.js"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\custom\\authentication\\sign-in\\two-factor.js",
+      "PackagePath": "staticwebassets\\assets\\js\\custom\\authentication\\sign-in\\two-factor.js"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\custom\\authentication\\sign-up\\coming-soon.js",
@@ -511,10 +507,6 @@
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\custom\\widgets.js",
       "PackagePath": "staticwebassets\\assets\\js\\custom\\widgets.js"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\fontawesome.js",
-      "PackagePath": "staticwebassets\\assets\\js\\fontawesome.js"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\scripts.bundle.js",
@@ -1717,24 +1709,8 @@
       "PackagePath": "staticwebassets\\assets\\media\\flags\\zimbabwe.svg"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\icons\\duotune\\ecommerce\\ecm001.svg",
-      "PackagePath": "staticwebassets\\assets\\media\\icons\\duotune\\ecommerce\\ecm001.svg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\icons\\duotune\\ecommerce\\ecm006.svg",
-      "PackagePath": "staticwebassets\\assets\\media\\icons\\duotune\\ecommerce\\ecm006.svg"
-    },
-    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\illustrations\\sigma-1\\17-dark.png",
       "PackagePath": "staticwebassets\\assets\\media\\illustrations\\sigma-1\\17-dark.png"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\illustrations\\sigma-1\\21-dark.png",
-      "PackagePath": "staticwebassets\\assets\\media\\illustrations\\sigma-1\\21-dark.png"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\illustrations\\sigma-1\\21.png",
-      "PackagePath": "staticwebassets\\assets\\media\\illustrations\\sigma-1\\21.png"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\illustrations\\sketchy-1\\1.png",
@@ -1813,20 +1789,12 @@
       "PackagePath": "staticwebassets\\assets\\media\\logos\\default-dark.svg"
     },
     {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\default-small.svg",
+      "PackagePath": "staticwebassets\\assets\\media\\logos\\default-small.svg"
+    },
+    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\default.svg",
       "PackagePath": "staticwebassets\\assets\\media\\logos\\default.svg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\demo43-dark.svg",
-      "PackagePath": "staticwebassets\\assets\\media\\logos\\demo43-dark.svg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\demo43-small.html",
-      "PackagePath": "staticwebassets\\assets\\media\\logos\\demo43-small.html"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\demo43.svg",
-      "PackagePath": "staticwebassets\\assets\\media\\logos\\demo43.svg"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\logos\\favicon.ico",
@@ -1849,8 +1817,12 @@
       "PackagePath": "staticwebassets\\assets\\media\\misc\\auth-screens.png"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\misc\\layout\\header-bg.jpg",
-      "PackagePath": "staticwebassets\\assets\\media\\misc\\layout\\header-bg.jpg"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\misc\\bg-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\media\\misc\\bg-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\misc\\menu-header-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\media\\misc\\menu-header-bg.jpg"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\misc\\pattern-4.jpg",
@@ -1861,20 +1833,20 @@
       "PackagePath": "staticwebassets\\assets\\media\\misc\\qr.png"
     },
     {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo14\\dark-ltr.png",
+      "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo14\\dark-ltr.png"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo14\\light-ltr.png",
+      "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo14\\light-ltr.png"
+    },
+    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo1\\light-ltr.png",
       "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo1\\light-ltr.png"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo2\\light-ltr.png",
       "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo2\\light-ltr.png"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo43\\dark-ltr.png",
-      "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo43\\dark-ltr.png"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo43\\light-ltr.png",
-      "PackagePath": "staticwebassets\\assets\\media\\preview\\demos\\demo43\\light-ltr.png"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\preview\\demos\\demo4\\light-ltr.png",
@@ -2165,14 +2137,6 @@
       "PackagePath": "staticwebassets\\assets\\media\\stock\\600x600\\img-64.jpg"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\600x600\\img-82.jpg",
-      "PackagePath": "staticwebassets\\assets\\media\\stock\\600x600\\img-82.jpg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\600x600\\img-84.jpg",
-      "PackagePath": "staticwebassets\\assets\\media\\stock\\600x600\\img-84.jpg"
-    },
-    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\900x600\\12.jpg",
       "PackagePath": "staticwebassets\\assets\\media\\stock\\900x600\\12.jpg"
     },
@@ -2207,14 +2171,6 @@
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\900x600\\42.jpg",
       "PackagePath": "staticwebassets\\assets\\media\\stock\\900x600\\42.jpg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\900x600\\44.jpg",
-      "PackagePath": "staticwebassets\\assets\\media\\stock\\900x600\\44.jpg"
-    },
-    {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\900x600\\46.jpg",
-      "PackagePath": "staticwebassets\\assets\\media\\stock\\900x600\\46.jpg"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\stock\\ecommerce\\1.gif",
@@ -2737,6 +2693,10 @@
       "PackagePath": "staticwebassets\\assets\\media\\svg\\brand-logos\\laravel-2.svg"
     },
     {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\brand-logos\\leaf.svg",
+      "PackagePath": "staticwebassets\\assets\\media\\svg\\brand-logos\\leaf.svg"
+    },
+    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\brand-logos\\linkedin-1.svg",
       "PackagePath": "staticwebassets\\assets\\media\\svg\\brand-logos\\linkedin-1.svg"
     },
@@ -2787,6 +2747,10 @@
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\brand-logos\\telegram.svg",
       "PackagePath": "staticwebassets\\assets\\media\\svg\\brand-logos\\telegram.svg"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\brand-logos\\tower.svg",
+      "PackagePath": "staticwebassets\\assets\\media\\svg\\brand-logos\\tower.svg"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\brand-logos\\treva.svg",
@@ -3017,6 +2981,10 @@
       "PackagePath": "staticwebassets\\assets\\media\\svg\\illustrations\\landing.svg"
     },
     {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\misc\\infography.svg",
+      "PackagePath": "staticwebassets\\assets\\media\\svg\\misc\\infography.svg"
+    },
+    {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\misc\\octagon.svg",
       "PackagePath": "staticwebassets\\assets\\media\\svg\\misc\\octagon.svg"
     },
@@ -3027,6 +2995,10 @@
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\misc\\smartphone-2.svg",
       "PackagePath": "staticwebassets\\assets\\media\\svg\\misc\\smartphone-2.svg"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\misc\\taieri.svg",
+      "PackagePath": "staticwebassets\\assets\\media\\svg\\misc\\taieri.svg"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\media\\svg\\misc\\video-play.svg",
@@ -3217,24 +3189,52 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\bootstrap-icons\\bootstrap-iconsbf04.woff2"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.eot",
-      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.eot"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.eot"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.svg",
-      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.svg"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.svg"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.ttf",
-      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.ttf"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.ttf"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.woff",
-      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.woff"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-duotone41cf.woff"
     },
     {
-      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.woff2",
-      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\fonticon\\fonticon9f51.woff2"
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.eot"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.svg"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.ttf"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-outlinefa73.woff"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.eot"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.svg"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.ttf"
+    },
+    {
+      "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\global\\fonts\\keenicons\\keenicons-solidfacd.woff"
     },
     {
       "Id": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\plugins\\global\\fonts\\line-awesome\\la-brands-400.eot",

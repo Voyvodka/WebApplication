@@ -825,7 +825,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #444;
-  background: #F2F2F2;
+  background: #f2f2f2;
   border-bottom: 1px solid #d5d5d5;
   display: block;
   padding: 0.5em;
@@ -853,8 +853,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 .geocoder-control-suggestions .geocoder-control-suggestion.geocoder-control-selected, .geocoder-control-suggestions .geocoder-control-suggestion:hover {
-  background: #7FDFFF;
-  border-color: #7FDFFF;
+  background: #7fdfff;
+  border-color: #7fdfff;
 }
 
 .leaflet-right .geocoder-control-suggestions {
@@ -902,4 +902,4 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-oldie .geocoder-control-input, .leaflet-oldie .geocoder-control-suggestions {
   border: 1px solid #999;
-}
+} 

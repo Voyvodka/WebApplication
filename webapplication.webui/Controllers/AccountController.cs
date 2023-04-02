@@ -27,10 +27,15 @@ namespace webapplication.webui.Controllers
             };
             return View(model);
         }
-        public IActionResult EditProfile()
+        public async Task<IActionResult> Settings()
         {
-            ViewData["Title"] = "Profil Düzenle";
-            return View();
+            ViewData["Title"] = "Profil Ayarları";
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var model = new AccountViewModel
+            {
+                User = user,
+            };
+            return View(model);
         }
     }
 }

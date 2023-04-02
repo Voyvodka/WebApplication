@@ -1,7 +1,7 @@
 "use strict";
 
 // Class Definition
-var KTSigninTwoSteps = function() {
+var KTSigninTwoFactor = function() {
     // Elements
     var form;
     var submitButton;
@@ -125,8 +125,8 @@ var KTSigninTwoSteps = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#kt_sing_in_two_steps_form');
-            submitButton = document.querySelector('#kt_sing_in_two_steps_submit');
+            form = document.querySelector('#kt_sing_in_two_factor_form');
+            submitButton = document.querySelector('#kt_sing_in_two_factor_submit');
 
             handleForm();
             handleType();
@@ -136,5 +136,5 @@ var KTSigninTwoSteps = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTSigninTwoSteps.init();
+    KTSigninTwoFactor.init();
 });

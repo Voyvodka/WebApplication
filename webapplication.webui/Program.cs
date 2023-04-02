@@ -74,6 +74,11 @@ app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "profilim/ayarlar",
+        pattern: "profilim/ayarlar",
+        defaults: new { controller = "Account", action = "Settings" }
+    );
+    endpoints.MapControllerRoute(
         name: "profilim/duzenle",
         pattern: "profilim/duzenle",
         defaults: new { controller = "Account", action = "EditProfile" }

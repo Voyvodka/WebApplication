@@ -9,73 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = webapplication.webui
 build_property.RootNamespace = webapplication.webui
-build_property.ProjectDir = C:\Users\samet\Desktop\WebApplication\webapplication.webui\
+build_property.ProjectDir = c:\Users\samet\Desktop\WebApplication\webapplication.webui\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\samet\Desktop\WebApplication\webapplication.webui
+build_property.MSBuildProjectDirectory = c:\Users\samet\Desktop\WebApplication\webapplication.webui
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Account/EditProfile.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Account/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Account/Index.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Auth/Login.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Account/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Auth/Register.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Auth/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Home/About.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Home/Index.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/Components/AccountSidebar/_AccountSidebar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQWNjb3VudFNpZGViYXJcX0FjY291bnRTaWRlYmFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/Components/Navbar/_Navbar.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/Components/Navbar/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTmF2YmFyXF9OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_AuthLayout.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_AccountHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50SGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_ActivitiesDrawer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY3Rpdml0aWVzRHJhd2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Aside.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Bc2lkZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_AuthLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdXRoTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Footer.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_ChatDrawer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGF0RHJhd2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Layout.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_Toolbar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub29sYmFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_UserOptions.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_UserOptions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyT3B0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/_ViewImports.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/_ViewStart.cshtml]
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
