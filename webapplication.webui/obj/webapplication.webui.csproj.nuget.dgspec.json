@@ -30,6 +30,12 @@
             "projectReferences": {
               "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.core\\webapplication.core.csproj": {
                 "projectPath": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.core\\webapplication.core.csproj"
+              },
+              "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.dataaccess\\webapplication.dataaccess.csproj": {
+                "projectPath": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.dataaccess\\webapplication.dataaccess.csproj"
+              },
+              "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.entity\\webapplication.entity.csproj": {
+                "projectPath": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.entity\\webapplication.entity.csproj"
               }
             }
           }
@@ -73,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -180,7 +186,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -261,7 +267,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -326,7 +332,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -400,7 +406,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

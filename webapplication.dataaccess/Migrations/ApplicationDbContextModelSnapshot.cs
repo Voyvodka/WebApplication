@@ -158,12 +158,15 @@ namespace webapplication.dataaccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Country")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -207,6 +210,9 @@ namespace webapplication.dataaccess.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("StateId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -219,6 +225,10 @@ namespace webapplication.dataaccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -226,7 +236,105 @@ namespace webapplication.dataaccess.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.HasIndex("StateId");
+
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("webapplication.entity.Location.City", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Countryid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Stateid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("country_code")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("country_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("state_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("state_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Countryid");
+
+                    b.HasIndex("Stateid");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Location.Country", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("capital")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("currency")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("currency_symbol")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("phonecode")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("region")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Country");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Location.State", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Countryid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("country_code")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("country_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Countryid");
+
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -278,6 +386,57 @@ namespace webapplication.dataaccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("webapplication.entity.Identity.ApplicationUser", b =>
+                {
+                    b.HasOne("webapplication.entity.Location.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("webapplication.entity.Location.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.HasOne("webapplication.entity.Location.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+
+                    b.Navigation("City");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Location.City", b =>
+                {
+                    b.HasOne("webapplication.entity.Location.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("Countryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapplication.entity.Location.State", "State")
+                        .WithMany()
+                        .HasForeignKey("Stateid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Location.State", b =>
+                {
+                    b.HasOne("webapplication.entity.Location.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("Countryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
                 });
 #pragma warning restore 612, 618
         }

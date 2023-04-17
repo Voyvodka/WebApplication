@@ -13,3 +13,7 @@ C:\Users\samet\Desktop\WebApplication\webapplication.business\obj\Debug\net6.0\r
 C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.core.dll
 C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.core.pdb
 C:\Users\samet\Desktop\WebApplication\webapplication.business\obj\Debug\net6.0\webapplication.business.csproj.CopyComplete
+C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.dataaccess.dll
+C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.entity.dll
+C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.dataaccess.pdb
+C:\Users\samet\Desktop\WebApplication\webapplication.business\bin\Debug\net6.0\webapplication.entity.pdb

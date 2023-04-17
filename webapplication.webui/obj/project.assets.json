@@ -2262,7 +2262,9 @@
           "Autofac": "6.5.0",
           "Autofac.Extensions.DependencyInjection": "8.0.0",
           "Autofac.Extras.DynamicProxy": "6.0.1",
-          "webapplication.core": "1.0.0"
+          "webapplication.core": "1.0.0",
+          "webapplication.dataaccess": "1.0.0",
+          "webapplication.entity": "1.0.0"
         },
         "compile": {
           "bin/placeholder/webapplication.business.dll": {}
@@ -7218,7 +7220,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

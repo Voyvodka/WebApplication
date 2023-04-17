@@ -3,6 +3,8 @@ using webapplication.webui.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using webapplication.dataaccess.Abstracts;
+using webapplication.business.Abstracts;
 namespace webapplication.webui.Controllers
 {
     [Authorize]
@@ -10,8 +12,14 @@ namespace webapplication.webui.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signinManager;
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signinManager)
+        private readonly ICountryService _countryService;
+        private readonly ICityService _cityService;
+        private readonly IStateService _stateService;
+        public AccountController(ICountryService countryService, ICityService cityService, IStateService stateService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signinManager)
         {
+            _countryService = countryService;
+            _cityService = cityService;
+            _stateService = stateService;
             _userManager = userManager;
             _signinManager = signinManager;
         }
@@ -34,6 +42,7 @@ namespace webapplication.webui.Controllers
             var model = new AccountViewModel
             {
                 User = user,
+                Countries = _countryService.GetAll().Data,
             };
             return View(model);
         }

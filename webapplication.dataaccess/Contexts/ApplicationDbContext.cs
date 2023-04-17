@@ -1,10 +1,14 @@
 using webapplication.entity.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using webapplication.entity.Location;
 namespace webapplication.dataaccess.Contexts
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Country> countries { get; set; }
+        public DbSet<City> cities { get; set; }
+        public DbSet<State> states { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             ServerVersion version = new MySqlServerVersion(new Version(8, 0, 32));

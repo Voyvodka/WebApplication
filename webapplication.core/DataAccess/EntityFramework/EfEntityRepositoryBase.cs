@@ -6,14 +6,13 @@ using System.Linq.Expressions;
 using System.Text;
 using webapplication.core.DataAccess;
 using webapplication.core.Entity.Abstract;
-
 namespace webapplication.core.DataAccess.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
          where TEntity : class, IEntity, new()
          where TContext : DbContext, new()
     {
-        public void Insert(TEntity entity)
+        public void Add(TEntity entity)
         {
             using (TContext context = new TContext())
             {
@@ -22,7 +21,6 @@ namespace webapplication.core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
-
         public void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -32,7 +30,6 @@ namespace webapplication.core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
-
         public void Update(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -40,13 +37,9 @@ namespace webapplication.core.DataAccess.EntityFramework
                 var updatedData = context.Entry(entity);
                 updatedData.State = EntityState.Modified;
                 context.SaveChanges();
-
-
-
             }
         }
-
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
+        public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
             {
@@ -57,14 +50,12 @@ namespace webapplication.core.DataAccess.EntityFramework
                 return context.Set<TEntity>().Where(filter).ToList();
             }
         }
-
-        public TEntity GetById(Expression<Func<TEntity, bool>> filter)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
             {
                 return context.Set<TEntity>().Where(filter).SingleOrDefault();
             }
         }
-
     }
 }
