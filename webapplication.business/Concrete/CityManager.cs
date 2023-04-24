@@ -22,7 +22,7 @@ namespace webapplication.business.Concrete
             _cityDal.Delete(city);
             return new SuccessResult();
         }
-        public IDataResult<List<City>> GetAll(Expression<Func<City, bool>> expression = null)
+        public IDataResult<List<City>> GetAll(Expression<Func<City, bool>>? expression = null)
         {
             if (expression == null)
             {

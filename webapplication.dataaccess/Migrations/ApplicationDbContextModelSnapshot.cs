@@ -28,6 +28,10 @@ namespace webapplication.dataaccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -43,6 +47,8 @@ namespace webapplication.dataaccess.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -277,7 +283,7 @@ namespace webapplication.dataaccess.Migrations
 
                     b.HasIndex("Stateid");
 
-                    b.ToTable("City");
+                    b.ToTable("cities");
                 });
 
             modelBuilder.Entity("webapplication.entity.Location.Country", b =>
@@ -307,7 +313,7 @@ namespace webapplication.dataaccess.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Country");
+                    b.ToTable("countries");
                 });
 
             modelBuilder.Entity("webapplication.entity.Location.State", b =>
@@ -334,7 +340,106 @@ namespace webapplication.dataaccess.Migrations
 
                     b.HasIndex("Countryid");
 
-                    b.ToTable("State");
+                    b.ToTable("states");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.Menu", b =>
+                {
+                    b.Property<int>("MenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ApplicationRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationRoleId1")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("MenuHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MenuHref")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MenuIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MenuKeyword")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MenuText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("MenuId");
+
+                    b.HasIndex("ApplicationRoleId1");
+
+                    b.HasIndex("MenuHeaderId");
+
+                    b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.MenuHeader", b =>
+                {
+                    b.Property<int>("MenuHeaderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("MenuHeaderIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MenuHeaderText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("MenuModuleId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("MenuHeaderId");
+
+                    b.HasIndex("MenuModuleId");
+
+                    b.ToTable("MenuHeaders");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.MenuModule", b =>
+                {
+                    b.Property<int>("MenuModuleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("MenuModuleIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MenuModuleText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("MenuModuleId");
+
+                    b.ToTable("MenuModules");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Identity.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -437,6 +542,34 @@ namespace webapplication.dataaccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.Menu", b =>
+                {
+                    b.HasOne("webapplication.entity.Identity.ApplicationRole", "ApplicationRole")
+                        .WithMany()
+                        .HasForeignKey("ApplicationRoleId1");
+
+                    b.HasOne("webapplication.entity.Menu.MenuHeader", "MenuHeader")
+                        .WithMany()
+                        .HasForeignKey("MenuHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationRole");
+
+                    b.Navigation("MenuHeader");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.MenuHeader", b =>
+                {
+                    b.HasOne("webapplication.entity.Menu.MenuModule", "MenuModule")
+                        .WithMany()
+                        .HasForeignKey("MenuModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuModule");
                 });
 #pragma warning restore 612, 618
         }

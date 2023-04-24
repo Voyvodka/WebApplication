@@ -15,5 +15,9 @@ namespace webapplication.webui.Controllers
             ViewData["Title"] = "Hakkımızda";
             return View();
         }
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }

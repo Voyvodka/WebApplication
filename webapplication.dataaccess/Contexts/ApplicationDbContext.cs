@@ -2,6 +2,7 @@ using webapplication.entity.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using webapplication.entity.Location;
+using webapplication.entity.Menu;
 namespace webapplication.dataaccess.Contexts
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -9,6 +10,9 @@ namespace webapplication.dataaccess.Contexts
         public DbSet<Country> countries { get; set; }
         public DbSet<City> cities { get; set; }
         public DbSet<State> states { get; set; }
+        public DbSet<MenuModule> MenuModules { get; set; }
+        public DbSet<MenuHeader> MenuHeaders { get; set; }
+        public DbSet<Menu> Menus { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             ServerVersion version = new MySqlServerVersion(new Version(8, 0, 32));

@@ -2,13 +2,25 @@ using webapplication.dataaccess.Contexts;
 using webapplication.entity.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Autofac;
+using webapplication.business.DependencyResolvers.Autofac;
+using webapplication.core.Extensions;
+using webapplication.core.Utilities.IoC;
+using webapplication.core.DependencyResolvers;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterModule(new AutofacBusinessmodule());
+});
+builder.Services.AddDependencyResolvers(new ICoreModule[]
+{
+    new CoreModule()
+});
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(x =>
 {
@@ -111,6 +123,11 @@ app.UseEndpoints(endpoints =>
         name: "/",
         pattern: "/",
         defaults: new { controller = "Home", action = "Index" }
+    );
+    endpoints.MapControllerRoute(
+        name: "TestSayfasi",
+        pattern: "/veri-gir",
+        defaults: new { controller = "Home", action = "Test" }
     );
     endpoints.MapControllerRoute(
         name: "default",

@@ -22,7 +22,7 @@ namespace webapplication.business.Concrete
             _stateDal.Delete(state);
             return new SuccessResult();
         }
-        public IDataResult<List<State>> GetAll(Expression<Func<State, bool>> expression = null)
+        public IDataResult<List<State>> GetAll(Expression<Func<State, bool>>? expression = null)
         {
             if (expression == null)
             {
