@@ -5,8 +5,6 @@ namespace webapplication.entity.Menu
     {
         public int MenuHeaderId { get; set; }
         public string MenuHeaderText { get; set; } = "";
-        public int MenuModuleId { get; set; }
-        public MenuModule? MenuModule { get; set; }
         public string MenuHeaderIconPath { get; set; } = "";
         public bool Passive { get; set; } = false;
     }

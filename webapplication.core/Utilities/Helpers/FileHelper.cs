@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using webapplication.core.Utilities.Results;
-
 namespace webapplication.core.Utilities.Helpers
 {
     public class FileHelper : IFileHelper
     {
         private static string _currentDirectory = Environment.CurrentDirectory + "\\wwwroot";
-        private static string _folderName = "\\images\\";
+        private static string _folderName = "\\app\\user-content\\";
         public void CheckDirectoryExist(string directory)
         {
             if (!Directory.Exists(directory))
@@ -27,10 +26,10 @@ namespace webapplication.core.Utilities.Helpers
         }
         public IResult CheckFileTypeValid(string type)
         {
-            if (type != ".jpeg" && type != ".jpg" && type != ".png" && type != ".jfif")
-            {
-                return new ErrorResult("Lütfen bir resim dosyası seçiniz.");
-            }
+            // if (type != ".jpeg" && type != ".jpg" && type != ".png" && type != ".jfif" && type != ".gif" && type != ".pdf" && type != ".xlsx" && type != "xls" && type != ".txt")
+            // {
+            //     return new ErrorResult("Lütfen bir resim dosyası seçiniz.");
+            // }
             return new SuccessResult();
         }
         public void CreateFile(string directory, IFormFile file)
@@ -41,9 +40,9 @@ namespace webapplication.core.Utilities.Helpers
                 fileStream.Flush();
             }
         }
-        public IResult Remove(string path)
+        public IResult Remove(string path, string folderName)
         {
-            RemoveOldFile((_currentDirectory + path).Replace("/", "\\"));
+            RemoveOldFile((_currentDirectory + folderName + path).Replace("/", "\\"));
             return new SuccessResult();
         }
         public void RemoveOldFile(string directory)
@@ -67,12 +66,20 @@ namespace webapplication.core.Utilities.Helpers
             {
                 return new ErrorResult(typeValid.Message);
             }
-            var randomName = Guid.NewGuid().ToString();
+            string randomName;
+            if (type != ".jpeg" && type != ".jpg" && type != ".png" && type != ".jfif" && type != ".gif")
+            {
+                randomName = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                randomName = file.FileName;
+            }
             CheckDirectoryExist(_currentDirectory + _folderName);
             CreateFile(_currentDirectory + _folderName + randomName + type, file);
             return new SuccessResult((_folderName + randomName + type).Replace("\\", "/"));
         }
-        public IResult Upload(IFormFile file)
+        public IResult Upload(IFormFile file, string folderName)
         {
             List<string> ImagePaths = new List<string>();
             var fileExists = CheckFileExist(file);
@@ -87,9 +94,9 @@ namespace webapplication.core.Utilities.Helpers
                 return new ErrorResult(typeValid.Message);
             }
             var randomName = Guid.NewGuid().ToString();
-            CheckDirectoryExist(_currentDirectory + _folderName);
-            CreateFile(_currentDirectory + _folderName + randomName + type, file);
-            return new SuccessResult((_folderName + randomName + type).Replace("\\", "/"));
+            CheckDirectoryExist(_currentDirectory + folderName);
+            CreateFile(_currentDirectory + folderName + randomName + type, file);
+            return new SuccessResult((randomName + type).Replace("\\", "/"));
         }
     }
 }

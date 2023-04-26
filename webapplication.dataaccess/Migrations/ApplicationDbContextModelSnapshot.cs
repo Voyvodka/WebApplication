@@ -400,15 +400,10 @@ namespace webapplication.dataaccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("MenuModuleId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Passive")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("MenuHeaderId");
-
-                    b.HasIndex("MenuModuleId");
 
                     b.ToTable("MenuHeaders");
                 });
@@ -433,6 +428,21 @@ namespace webapplication.dataaccess.Migrations
                     b.HasKey("MenuModuleId");
 
                     b.ToTable("MenuModules");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Menu.ModuleMenu", b =>
+                {
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MenuModuleId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("MenuId");
+
+                    b.HasIndex("MenuModuleId");
+
+                    b.ToTable("ModuleMenus");
                 });
 
             modelBuilder.Entity("webapplication.entity.Identity.ApplicationRole", b =>
@@ -561,13 +571,21 @@ namespace webapplication.dataaccess.Migrations
                     b.Navigation("MenuHeader");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.MenuHeader", b =>
+            modelBuilder.Entity("webapplication.entity.Menu.ModuleMenu", b =>
                 {
+                    b.HasOne("webapplication.entity.Menu.Menu", "Menu")
+                        .WithMany()
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("webapplication.entity.Menu.MenuModule", "MenuModule")
                         .WithMany()
                         .HasForeignKey("MenuModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Menu");
 
                     b.Navigation("MenuModule");
                 });

@@ -12,11 +12,6 @@ C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\weba
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\webapplication.webui.AssemblyInfo.cs
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\webapplication.webui.csproj.CoreCompileInputs.cache
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\webapplication.webui.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets\msbuild.webapplication.webui.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets\msbuild.build.webapplication.webui.props
-C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.webapplication.webui.props
-C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.webapplication.webui.props
-C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets.pack.json
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\samet\Desktop\WebApplication\webapplication.webui\obj\Debug\net6.0\scopedcss\bundle\webapplication.webui.styles.css

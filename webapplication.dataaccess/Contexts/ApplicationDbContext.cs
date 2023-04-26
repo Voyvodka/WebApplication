@@ -13,11 +13,17 @@ namespace webapplication.dataaccess.Contexts
         public DbSet<MenuModule> MenuModules { get; set; }
         public DbSet<MenuHeader> MenuHeaders { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<ModuleMenu> ModuleMenus { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             ServerVersion version = new MySqlServerVersion(new Version(8, 0, 32));
             optionsBuilder.UseMySql(@"Server=localhost;port=3306;Database=webapplication;Uid=root;Pwd=1234;charset=utf8", version);
             base.OnConfiguring(optionsBuilder);
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<ModuleMenu>().HasNoKey();
+            base.OnModelCreating(builder);
         }
     }
 }

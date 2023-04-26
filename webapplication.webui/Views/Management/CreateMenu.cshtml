@@ -1,0 +1,224 @@
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-5">
+            <form id="MenuModuleForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Modül Oluştur</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-5 d-flex justify-content-center">
+                        <!--begin::Image input-->
+                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                            <!--begin::Image preview wrapper-->
+                            <div class="image-input-wrapper w-125px h-125px" ></div>
+                            <!--end::Image preview wrapper-->
+                            <!--begin::Edit button-->
+                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="change"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkon Değiştir">
+                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
+                                <!--begin::Inputs-->
+                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="avatar_remove" />
+                                <!--end::Inputs-->
+                            </label>
+                            <!--end::Edit button-->
+                            <!--begin::Cancel button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="cancel"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Kaldır">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Cancel button-->
+                            <!--begin::Remove button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="remove"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Sil">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Remove button-->
+                        </div>
+                        <!--end::Image input-->
+                    </div>
+                    <div class="">
+                        <label for="MenuModuleText" class="required form-label form-label-sm">Modül Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuModuleText" data-field="MenuModuleText" name="MenuModuleText" placeholder="Modül Adı"/>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+        <div class="card mb-5">
+            <form id="MenuHeaderForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Menü Başlığı Oluştur</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-5 d-flex justify-content-center">
+                        <!--begin::Image input-->
+                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                            <!--begin::Image preview wrapper-->
+                            <div class="image-input-wrapper w-125px h-125px" ></div>
+                            <!--end::Image preview wrapper-->
+                            <!--begin::Edit button-->
+                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="change"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkon Değiştir">
+                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
+                                <!--begin::Inputs-->
+                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="avatar_remove" />
+                                <!--end::Inputs-->
+                            </label>
+                            <!--end::Edit button-->
+                            <!--begin::Cancel button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="cancel"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Kaldır">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Cancel button-->
+                            <!--begin::Remove button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="remove"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Sil">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Remove button-->
+                        </div>
+                        <!--end::Image input-->
+                    </div>
+                    <div class="">
+                        <label for="MenuHeaderText" class="required form-label form-label-sm">Menü Başlık Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHeaderText" data-field="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mb-5">
+            <form id="MenuForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Menü Oluştur</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-5 d-flex justify-content-center">
+                        <!--begin::Image input-->
+                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                            <!--begin::Image preview wrapper-->
+                            <div class="image-input-wrapper w-125px h-125px" ></div>
+                            <!--end::Image preview wrapper-->
+                            <!--begin::Edit button-->
+                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="change"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkon Değiştir">
+                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
+                                <!--begin::Inputs-->
+                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="avatar_remove" />
+                                <!--end::Inputs-->
+                            </label>
+                            <!--end::Edit button-->
+                            <!--begin::Cancel button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="cancel"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Kaldır">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Cancel button-->
+                            <!--begin::Remove button-->
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="remove"
+                            data-bs-toggle="tooltip"
+                            data-bs-dismiss="click"
+                            title="İkonu Sil">
+                                <i class="ki-outline ki-cross fs-3"></i>
+                            </span>
+                            <!--end::Remove button-->
+                        </div>
+                        <!--end::Image input-->
+                    </div>
+                    <div class="mb-5">
+                        <label for="MenuText" class="required form-label form-label-sm">Menü Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuText" data-field="MenuText" name="MenuText" placeholder="Menü Adı"/>
+                    </div>
+                    <div class="">
+                        <label for="MenuKeyword" class="required form-label form-label-sm">Anahtar Kelimeler</label>
+                        <select class="form-select form-select-sm" data-control="select2" multiple data-placeholder="Select an option" id="MenuKeyword" name="MenuKeyword">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#MenuModuleForm').on("submit",function(e){
+        e.preventDefault();
+        if(!checkInputs('MenuModuleForm')) return;
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/Management/SaveModuleMenu",
+            type: 'POST',
+            async: true,
+            data: formData,
+            processData: false,
+            contentType: false,
+        }).then(function(result){
+            if(result){
+                successAlert("Modül Başarıyla Oluşturuldu");
+                removeInputValue('MenuModuleForm');
+            }
+            else{
+                errorAlert("Modül Oluşturulamadı");
+            }
+        })
+    });
+    $('#MenuHeaderForm').on("submit",function(e){
+        e.preventDefault();
+        if(!checkInputs('MenuHeaderForm')) return;
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/Management/SaveModuleHeader",
+            type: 'POST',
+            async: true,
+            data: formData,
+            processData: false,
+            contentType: false,
+        }).then(function(result){
+            if(result){
+                successAlert("Menu Başlığı Başarıyla Oluşturuldu");
+                removeInputValue('MenuHeaderForm');
+            }
+            else{
+                errorAlert("Menu Başlığı Oluşturulamadı");
+            }
+        })
+    });
+</script>

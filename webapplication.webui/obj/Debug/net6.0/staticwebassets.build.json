@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XjWEvGATgg3C5WqMF9KOkuFROA5jSsrPBgDYAeVmx/A=",
+  "Hash": "OuXRu5AUNXFcHhB6nFKNRzNhrkvNuG5clpgi/AlZLZ4=",
   "Source": "webapplication.webui",
   "BasePath": "_content/webapplication.webui",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\app\\media\\MenuIcons\\0b1433fe-2fa5-4d80-9a47-e3850cd1f007.jpeg",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "app/media/MenuIcons/0b1433fe-2fa5-4d80-9a47-e3850cd1f007.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\0b1433fe-2fa5-4d80-9a47-e3850cd1f007.jpeg"
+    },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\style.bundle.css",
       "SourceId": "webapplication.webui",
@@ -2191,6 +2208,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\scripts.bundle.js"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\utilities.js",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "assets/js/utilities.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\utilities.js"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\widgets.bundle.js",

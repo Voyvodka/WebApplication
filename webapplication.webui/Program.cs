@@ -34,7 +34,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/giris-yap";
     options.LogoutPath = "/cikis-yap";
     options.Cookie.Name = "auth_cookie";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+    options.ExpireTimeSpan = TimeSpan.FromHours(3);
     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
     options.Cookie.HttpOnly = true;
 });
@@ -44,7 +44,7 @@ builder.Services.AddAuthentication("Cookies")
         options.LoginPath = "/giris-yap";
         options.LogoutPath = "/cikis-yap";
         options.Cookie.Name = "auth_cookie";
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+        options.ExpireTimeSpan = TimeSpan.FromHours(3);
         options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
         options.Cookie.HttpOnly = true;
     }).AddGoogle(options =>
@@ -86,6 +86,11 @@ app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "yonetim/menu-olustur",
+        pattern: "yonetim/menu-olustur",
+        defaults: new { controller = "Management", action = "CreateMenu" }
+    );
+    endpoints.MapControllerRoute(
         name: "profilim/ayarlar",
         pattern: "profilim/ayarlar",
         defaults: new { controller = "Account", action = "Settings" }
@@ -123,11 +128,6 @@ app.UseEndpoints(endpoints =>
         name: "/",
         pattern: "/",
         defaults: new { controller = "Home", action = "Index" }
-    );
-    endpoints.MapControllerRoute(
-        name: "TestSayfasi",
-        pattern: "/veri-gir",
-        defaults: new { controller = "Home", action = "Test" }
     );
     endpoints.MapControllerRoute(
         name: "default",
