@@ -164,9 +164,23 @@
                         <label for="MenuText" class="required form-label form-label-sm">Menü Adı</label>
                         <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuText" data-field="MenuText" name="MenuText" placeholder="Menü Adı"/>
                     </div>
-                    <div class="">
+                    <div class="mb-5">
+                        <label for="MenuHeaderId" class="required form-label form-label-sm">Menü Başlığı</label>
+                        <select class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Başlığı Seçiniz" name="MenuHeaderId" id="MenuHeaderId">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
                         <label for="MenuKeyword" class="required form-label form-label-sm">Anahtar Kelimeler</label>
-                        <select class="form-select form-select-sm" data-control="select2" multiple data-placeholder="Select an option" id="MenuKeyword" name="MenuKeyword">
+                        <input class="form-control form-control-sm form-control-solid" placeholder="Anahtar Kelime Ekleyiniz" id="MenuKeyword" name="MenuKeyword"/>
+                    </div>
+                    <div class="mb-5">
+                        <label for="MenuHref" class="required form-label form-label-sm">Menü Linki</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHref" data-field="MenuHref" name="MenuHref" placeholder="Menü Linki (/controller/action)"/>
+                    </div>
+                    <div class="mb-5">
+                        <label for="ApplicationRoleId" class="required form-label form-label-sm">Menü Rol</label>
+                        <select class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="ApplicationRoleId">
                             <option></option>
                         </select>
                     </div>
@@ -179,6 +193,37 @@
     </div>
 </div>
 <script>
+    new Tagify(document.querySelector("#MenuKeyword"),{maxTags:15});
+    $(document).ready(function(){
+        reloadMenuHeaderSelect();
+        reloadApplicationRoles();
+    });
+    function reloadApplicationRoles(){
+        $('#ApplicationRoleId').empty();
+        $('#ApplicationRoleId').append("<option></option>");
+        $.ajax({
+            url: "/Management/GetRoles",
+            async: true,
+            type: "GET",
+        }).then(function(response){
+            for(let item of response){
+                $('#ApplicationRoleId').append(`<option value="${item.menuHeaderId}">${item.menuHeaderText}</option>`)
+            }
+        });
+    }
+    function reloadMenuHeaderSelect(){
+        $('#MenuHeaderId').empty();
+        $('#MenuHeaderId').append("<option></option>");
+        $.ajax({
+            url: "/Management/GetMenuHeaders",
+            async: true,
+            type: "GET",
+        }).then(function(response){
+            for(let item of response){
+                $('#MenuHeaderId').append(`<option value="${item.menuHeaderId}">${item.menuHeaderText}</option>`)
+            }
+        });
+    }
     $('#MenuModuleForm').on("submit",function(e){
         e.preventDefault();
         if(!checkInputs('MenuModuleForm')) return;

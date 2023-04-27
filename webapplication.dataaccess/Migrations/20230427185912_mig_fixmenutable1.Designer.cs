@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webapplication.dataaccess.Contexts;
 
@@ -10,9 +11,10 @@ using webapplication.dataaccess.Contexts;
 namespace webapplication.dataaccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230427185912_mig_fixmenutable1")]
+    partial class mig_fixmenutable1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,10 +28,6 @@ namespace webapplication.dataaccess.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -47,8 +45,6 @@ namespace webapplication.dataaccess.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -349,9 +345,6 @@ namespace webapplication.dataaccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ApplicationRoleId")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<int>("MenuHeaderId")
                         .HasColumnType("int");
 
@@ -375,8 +368,6 @@ namespace webapplication.dataaccess.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("MenuId");
-
-                    b.HasIndex("ApplicationRoleId");
 
                     b.HasIndex("MenuHeaderId");
 
@@ -440,13 +431,6 @@ namespace webapplication.dataaccess.Migrations
                     b.HasIndex("MenuModuleId");
 
                     b.ToTable("ModuleMenus");
-                });
-
-            modelBuilder.Entity("webapplication.entity.Identity.ApplicationRole", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
-
-                    b.HasDiscriminator().HasValue("ApplicationRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -553,17 +537,11 @@ namespace webapplication.dataaccess.Migrations
 
             modelBuilder.Entity("webapplication.entity.Menu.Menu", b =>
                 {
-                    b.HasOne("webapplication.entity.Identity.ApplicationRole", "ApplicationRole")
-                        .WithMany()
-                        .HasForeignKey("ApplicationRoleId");
-
                     b.HasOne("webapplication.entity.Menu.MenuHeader", "MenuHeader")
                         .WithMany()
                         .HasForeignKey("MenuHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ApplicationRole");
 
                     b.Navigation("MenuHeader");
                 });

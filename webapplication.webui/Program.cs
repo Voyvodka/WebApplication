@@ -22,13 +22,15 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
 });
 builder.Services.AddSignalR();
 builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(x =>
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(x =>
 {
     x.Password.RequireNonAlphanumeric = false;
     x.Password.RequireUppercase = false;
     x.Password.RequireLowercase = false;
     x.User.RequireUniqueEmail = true;
-}).AddEntityFrameworkStores<ApplicationDbContext>();
+}).AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/giris-yap";

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OuXRu5AUNXFcHhB6nFKNRzNhrkvNuG5clpgi/AlZLZ4=",
+  "Hash": "yvjFVLxFE5XtOcuhFkaiXgX2sn3aGp5tIRdA+Trq6/w=",
   "Source": "webapplication.webui",
   "BasePath": "_content/webapplication.webui",
   "Mode": "Default",
@@ -32,6 +32,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\0b1433fe-2fa5-4d80-9a47-e3850cd1f007.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\app\\media\\MenuIcons\\a4a0afda-6bd0-44db-8794-2606ba3f26db.jpeg",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "app/media/MenuIcons/a4a0afda-6bd0-44db-8794-2606ba3f26db.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\a4a0afda-6bd0-44db-8794-2606ba3f26db.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\app\\media\\MenuIcons\\f7ae13b1-1028-4f16-af67-6f1bd5ea7f55.png",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "app/media/MenuIcons/f7ae13b1-1028-4f16-af67-6f1bd5ea7f55.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\f7ae13b1-1028-4f16-af67-6f1bd5ea7f55.png"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\style.bundle.css",

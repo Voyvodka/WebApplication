@@ -11,7 +11,7 @@ namespace webapplication.entity.Menu
         public string MenuIconPath { get; set; } = "";
         public int MenuHeaderId { get; set; }
         public MenuHeader? MenuHeader { get; set; }
-        public int? ApplicationRoleId { get; set; }
+        public string? ApplicationRoleId { get; set; }
         public ApplicationRole? ApplicationRole { get; set; }
         public bool Passive { get; set; } = false;
     }
