@@ -2,7 +2,7 @@ using webapplication.core.DataAccess;
 using webapplication.entity.Menu;
 namespace webapplication.dataaccess.Abstracts
 {
-    public interface IMenuModuleDal : IEntityRepository<MenuModule>
+    public interface IModuleDal : IEntityRepository<Module>
     {
     }
 }

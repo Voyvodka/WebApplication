@@ -3,12 +3,12 @@ using webapplication.core.Utilities.Results;
 using webapplication.entity.Menu;
 namespace webapplication.business.Abstracts
 {
-    public interface IMenuModuleService
+    public interface IModuleService
     {
-        public IDataResult<List<MenuModule>> GetAll(Expression<Func<MenuModule, bool>>? expression = null);
-        public IDataResult<MenuModule> GetSingle(Expression<Func<MenuModule, bool>> expression);
-        public IResult Add(MenuModule menuModule);
-        public IResult Update(MenuModule menuModule);
-        public IResult Delete(MenuModule menuModule);
+        public IDataResult<List<Module>> GetAll(Expression<Func<Module, bool>>? expression = null);
+        public IDataResult<Module> GetSingle(Expression<Func<Module, bool>> expression);
+        public IResult Add(Module module);
+        public IResult Update(Module module);
+        public IResult Delete(Module module);
     }
 }

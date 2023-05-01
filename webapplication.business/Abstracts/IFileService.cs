@@ -5,7 +5,7 @@ namespace webapplication.business.Abstracts
 {
     public interface IFileService
     {
-        IResult AddForMenuModule(IFormFile file, MenuModule menuModule);
+        IResult AddForModule(IFormFile file, Module module);
         IResult AddForMenuHeader(IFormFile file, MenuHeader menuHeader);
     }
 }

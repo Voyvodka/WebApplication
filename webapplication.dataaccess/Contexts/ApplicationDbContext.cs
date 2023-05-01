@@ -5,12 +5,12 @@ using webapplication.entity.Location;
 using webapplication.entity.Menu;
 namespace webapplication.dataaccess.Contexts
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public DbSet<Country> countries { get; set; }
         public DbSet<City> cities { get; set; }
         public DbSet<State> states { get; set; }
-        public DbSet<MenuModule> MenuModules { get; set; }
+        public DbSet<Module> Modules { get; set; }
         public DbSet<MenuHeader> MenuHeaders { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<ModuleMenu> ModuleMenus { get; set; }
@@ -22,7 +22,6 @@ namespace webapplication.dataaccess.Contexts
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<ModuleMenu>().HasNoKey();
             base.OnModelCreating(builder);
         }
     }

@@ -4,7 +4,7 @@ using webapplication.dataaccess.Contexts;
 using webapplication.entity.Menu;
 namespace webapplication.dataaccess.Concretes
 {
-    public class MenuModuleDal : EfEntityRepositoryBase<MenuModule, ApplicationDbContext>, IMenuModuleDal
+    public class ModuleDal : EfEntityRepositoryBase<Module, ApplicationDbContext>, IModuleDal
     {
     }
 }

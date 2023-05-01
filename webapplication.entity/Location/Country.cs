@@ -4,7 +4,7 @@ namespace webapplication.entity.Location
     public class Country : IEntity
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string name { get; set; } = "";
         public string? phonecode { get; set; }
         public string? capital { get; set; }
         public string? currency { get; set; }

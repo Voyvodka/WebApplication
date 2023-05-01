@@ -28,9 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(x =>
     x.Password.RequireUppercase = false;
     x.Password.RequireLowercase = false;
     x.User.RequireUniqueEmail = true;
-}).AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders()
-    .AddRoles<IdentityRole>();
+}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/giris-yap";
@@ -68,7 +66,7 @@ app.UseStaticFiles(new StaticFileOptions()
         r =>
         {
             string path = r.File.PhysicalPath;
-            if (path.EndsWith(".css") || path.EndsWith(".js") || path.EndsWith(".gif") || path.EndsWith(".jpg") || path.EndsWith(".png") || path.EndsWith(".svg") || path.EndsWith(".ttf"))
+            if (path.EndsWith(".css") || (path.EndsWith(".js") && !path.Contains("utilities.js")) || path.EndsWith(".gif") || path.EndsWith(".jpg") || path.EndsWith(".png") || path.EndsWith(".svg") || path.EndsWith(".ttf"))
             {
                 TimeSpan maxAge = new TimeSpan(7, 0, 0, 0);
                 r.Context.Response.Headers.Append("Cache-Control", "max-age=" + maxAge.TotalSeconds.ToString("0"));

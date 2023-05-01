@@ -39,7 +39,7 @@ namespace webapplication.core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
-        public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter)
+        public List<TEntity> GetList(Expression<Func<TEntity, bool>>? filter)
         {
             using (TContext context = new TContext())
             {

@@ -8,28 +8,28 @@ namespace webapplication.business.Concrete
     public class FileManager : IFileService
     {
         private readonly IFileHelper _fileHelper;
-        private readonly IMenuModuleService _menuModuleService;
+        private readonly IModuleService _moduleService;
         private readonly IMenuHeaderService _menuHeaderService;
-        public FileManager(IFileHelper fileHelper, IMenuModuleService menuModuleService, IMenuHeaderService menuHeaderService)
+        public FileManager(IFileHelper fileHelper, IModuleService moduleService, IMenuHeaderService menuHeaderService)
         {
             _fileHelper = fileHelper;
-            _menuModuleService = menuModuleService;
+            _moduleService = moduleService;
             _menuHeaderService = menuHeaderService;
         }
-        public IResult AddForMenuModule(IFormFile file, MenuModule menuModule)
+        public IResult AddForModule(IFormFile file, Module module)
         {
             var folderName = "\\app\\media\\MenuIcons\\";
-            if (!string.IsNullOrEmpty(menuModule.MenuModuleIconPath))
+            if (!string.IsNullOrEmpty(module.ModuleIconPath))
             {
-                _fileHelper.Remove(menuModule.MenuModuleIconPath, folderName);
+                _fileHelper.Remove(module.ModuleIconPath, folderName);
             }
             var imageResult = _fileHelper.Upload(file, folderName);
             if (!imageResult.Success)
             {
                 return new ErrorResult("Resim Yüklenemedi.");
             }
-            menuModule.MenuModuleIconPath = imageResult.Message;
-            _menuModuleService.Update(menuModule);
+            module.ModuleIconPath = imageResult.Message;
+            _moduleService.Update(module);
             return new SuccessResult("Resim yükleme başarılı!");
         }
         public IResult AddForMenuHeader(IFormFile file, MenuHeader menuHeader)
