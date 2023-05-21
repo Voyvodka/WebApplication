@@ -18,53 +18,72 @@
 	<link href="/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/ripple.css" rel="stylesheet" type="text/css" />
     <script src="/assets/plugins/global/plugins.bundle.js"></script>
     <script src="/assets/js/scripts.bundle.js"></script>
+    <script src="/assets/js/ripple.js"></script>
 </head>
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed">
-<script>
-    var defaultThemeMode = "light";
-    var themeMode;
-    if (document.documentElement) {
-        if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
-            themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
-        } else {
-            if (localStorage.getItem("data-bs-theme") !== null) {
-                themeMode = localStorage.getItem("data-bs-theme");
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
             } else {
-                themeMode = defaultThemeMode;
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
             }
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
         }
-        if (themeMode === "system") {
-            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-bs-theme", themeMode);
-    }
-</script>
-<div class="d-flex flex-column flex-root">
-    <!--begin::Page-->
-    <div class="page d-flex flex-row flex-column-fluid">
-        <!--begin::Wrapper-->
-        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-            @await Component.InvokeAsync("Navbar")
-            <div class="d-flex flex-column-fluid">
-                @await Html.PartialAsync("_Aside")
-                <div class="d-flex flex-column flex-column-fluid container-fluid">
-                    @RenderBody()
-                    @await Html.PartialAsync("_Footer")
+    </script>
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                @await Component.InvokeAsync("Navbar")
+                <div class="d-flex flex-column-fluid">
+                    @await Html.PartialAsync("_Aside")
+                    <div class="d-flex flex-column flex-column-fluid container-fluid">
+                        @RenderBody()
+                        @await Html.PartialAsync("_Footer")
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@await Html.PartialAsync("_ActivitiesDrawer")
-@await Html.PartialAsync("_ChatDrawer")
-<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-    <i class="ki-duotone ki-arrow-up">
-        <span class="path1"></span>
-        <span class="path2"></span>
-    </i>
-</div>
+    @await Html.PartialAsync("_ActivitiesDrawer")
+    @await Html.PartialAsync("_ChatDrawer")
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <i class="ki-duotone ki-arrow-up">
+            <span class="path1"></span>
+            <span class="path2"></span>
+        </i>
+    </div>
+    <script>
+        $(function() {
+            @* $(document).on('click', 'button', function(e) { e.preventDefault(); }) *@
+            window.rippler = $.ripple('.btn:not(.no-bind), .area', {
+                debug: true,
+                multi: true
+            });
+            $.ripple('.no-bind.demo', {
+                on: 'mouseleave',
+                multi: true
+            });
+            $.ripple('.no-bind.jakiestfu', {
+                on: 'mouseenter',
+                multi: true
+            });
+        });
+    </script>
     <script>var hostUrl = "assets/index.html";</script>
     <script src="/assets/js/utilities.js"></script>
     <script src="/assets/js/draggable.js"></script>

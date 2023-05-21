@@ -49,6 +49,17 @@ function removeInputValue(formId) {
     .find('[data-kt-image-input-action="cancel"]')
     .click();
 }
+function formatDate(isoDate) {
+  if (isoDate == null) return "";
+  const date = new Date(isoDate);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  return `${hours}:${minutes}:${seconds} ${day}.${month}.${year}`;
+}
 function successAlert(text) {
   Swal.fire({
     text: text,
@@ -78,13 +89,92 @@ function activateDraggable() {
   if (containers.length === 0) {
     return false;
   }
-  var swappable = new Sortable.default(containers, {
+  var droppable = new Sortable.default(containers, {
     draggable: ".draggable",
     handle: ".draggable .draggable-handle",
+    dropzone: ".draggable-zone",
     mirror: {
       //appendTo: selector,
       appendTo: "body",
       constrainDimensions: true,
     },
   });
+  const restrcitedWrapper = document.querySelector('[data-kt-draggable-level="restricted"]');
+  let droppableOrigin;
+  droppable.on("drag:start", (e) => {
+    droppableOrigin = e.originalSource.getAttribute("data-draggable-card");
+  });
+  droppable.on("drag:over", (e) => {
+    const isRestricted = Array.from(e.overContainer.querySelectorAll(`[data-draggable-card="${droppableOrigin}"]`));
+    isRestricted.shift();
+    let isSameItemInContainer = false;
+    for (let item of isRestricted) {
+      if (item.getAttribute("data-draggable-card") == e.originalSource.getAttribute("data-draggable-card")) {
+        isSameItemInContainer = true;
+      } else {
+        isSameItemInContainer = false;
+      }
+    }
+    if (isSameItemInContainer) {
+      e.cancel();
+    }
+  });
+  droppable.on("drag:stop", (e) => {
+    // remove all draggable occupied limit
+    containers.forEach((c) => {
+      c.classList.remove("draggable-dropzone--occupied");
+    });
+  });
+  droppable.on("droppable:dropped", (e) => {
+    const isRestricted = Array.from(e.overContainer.querySelectorAll(`[data-draggable-card="${droppableOrigin}"]`));
+    isRestricted.shift();
+    let isSameItemInContainer = false;
+    for (let item of isRestricted) {
+      if (item.getAttribute("data-draggable-card") == e.originalSource.getAttribute("data-draggable-card")) {
+        isSameItemInContainer = true;
+      } else {
+        isSameItemInContainer = false;
+      }
+    }
+    if (isSameItemInContainer) {
+      e.cancel();
+    }
+  });
+}
+function activateDraggableModal(elem) {
+  var element = document.querySelector("#" + elem);
+  dragElement(element);
+  function dragElement(elmnt) {
+    var pos1 = 0,
+      pos2 = 0,
+      pos3 = 0,
+      pos4 = 0;
+    if (elmnt.querySelector(".modal-header")) {
+      elmnt.querySelector(".modal-header").onmousedown = dragMouseDown;
+    } else {
+      elmnt.onmousedown = dragMouseDown;
+    }
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+      elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+    }
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
 }

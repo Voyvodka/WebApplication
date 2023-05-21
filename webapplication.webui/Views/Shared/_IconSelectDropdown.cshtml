@@ -1,0 +1,79 @@
+@{
+  List<string> iconList = new(){
+    "fa-eye",
+    "fa-xmark",
+    "fa-user",
+    "fa-facebook",
+    "fa-check",
+    "fa-download",
+    "fa-twitter",
+    "fa-image",
+    "fa-heart",
+    "fa-cloud",
+    "fa-youtube",
+    "fa-circle-xmark",
+    "fa-house",
+    "fa-phone",
+    "fa-bars",
+    "fa-envelope",
+    "fa-star",
+    "fa-comment",
+    "fa-arrow-up",
+    "fa-arrow-down",
+    "fa-arrow-left",
+    "fa-arrow-right",
+    "fa-file",
+    "fa-bell",
+    "fa-umbrella",
+    "fa-gift",
+    "fa-pen",
+    "fa-trash",
+    "fa-barcode",
+    "fa-windows",
+    "fa-rotate-right",
+    "fa-inbox",
+    "fa-bookmark",
+    "fa-apple",
+    "fa-ghost",
+    "fa-filter",
+    "fa-list",
+    "fa-tag",
+    "fa-video",
+    "fa-font",
+    "fa-stack-overflow",
+    "fa-bookmark",
+    "fa-book",
+    "fa-gear",
+    "fa-film",
+    "fa-globe",
+    "fa-key",
+    "fa-thumbtack",
+    "fa-gears",
+    "fa-wifi",
+    "fa-sliders",
+    "fa-hashtag",
+  };
+}
+<button type="button" class="btn btn-sm btn-icon rounded-circle menu-dropdown position-absolute bottom-0 end-0" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">
+  <i class="fa-solid fa-icons fs-6"></i>
+</button>
+<div class="menu menu-sub menu-sub-dropdown w-250px mh-200px overflow-y-auto" data-kt-menu="true" style="z-index: 107; position: fixed; inset: 0px 0px auto auto; margin: 0px; transform: translate(-438px, 273px)" data-popper-placement="bottom-end">
+  <div class="row m-0 p-0">
+      @foreach (var icon in iconList)
+    {
+      <div onclick="selectIconPath($(this))" class="btn btn-sm btn-icon rounded-circle col-2 d-flex align-items-center justify-content-center">
+        <i class="fa-solid @icon"></i>
+      </div>
+    }
+  </div>
+</div>
+<script>
+  function selectIconPath(elem){
+    var iconPath = elem.find("i").attr('class');
+    elem.parent().parent().parent().find('input[type="hidden"]').val(iconPath);
+    selectButton = elem.parent().parent().parent().find("button").find("i");
+    selectButton.removeAttr("class");
+    selectButton.addClass(iconPath);
+    KTMenu.hideDropdowns();
+  }
+</script>

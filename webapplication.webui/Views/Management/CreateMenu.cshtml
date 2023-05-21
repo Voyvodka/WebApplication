@@ -1,54 +1,21 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-sm-6">
         <div class="card mb-5">
             <form id="ModuleForm" autocomplete="off">
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Modül Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editModule" id="editModule">
+                            <option></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="mb-5 d-flex justify-content-center">
-                        <!--begin::Image input-->
-                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
-                            <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" ></div>
-                            <!--end::Image preview wrapper-->
-                            <!--begin::Edit button-->
-                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkon Değiştir">
-                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-                                <!--begin::Inputs-->
-                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="avatar_remove" />
-                                <!--end::Inputs-->
-                            </label>
-                            <!--end::Edit button-->
-                            <!--begin::Cancel button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Kaldır">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Cancel button-->
-                            <!--begin::Remove button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Sil">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Remove button-->
-                        </div>
-                        <!--end::Image input-->
-                    </div>
-                    <div class="">
+                    <div class="position-relative">
                         <label for="ModuleText" class="required form-label form-label-sm">Modül Adı</label>
                         <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="ModuleText" data-field="ModuleText" name="ModuleText" placeholder="Modül Adı"/>
+                        <input type="hidden" name="ModuleIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
                 </div>
                 <div class="card-footer justify-content-end d-flex p-5">
@@ -60,51 +27,18 @@
             <form id="MenuHeaderForm" autocomplete="off">
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Menü Başlığı Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editMenuHeader" id="editMenuHeader">
+                            <option></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="mb-5 d-flex justify-content-center">
-                        <!--begin::Image input-->
-                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
-                            <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" ></div>
-                            <!--end::Image preview wrapper-->
-                            <!--begin::Edit button-->
-                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkon Değiştir">
-                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-                                <!--begin::Inputs-->
-                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="avatar_remove" />
-                                <!--end::Inputs-->
-                            </label>
-                            <!--end::Edit button-->
-                            <!--begin::Cancel button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Kaldır">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Cancel button-->
-                            <!--begin::Remove button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Sil">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Remove button-->
-                        </div>
-                        <!--end::Image input-->
-                    </div>
-                    <div class="">
+                    <div class="position-relative">
                         <label for="MenuHeaderText" class="required form-label form-label-sm">Menü Başlık Adı</label>
                         <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHeaderText" data-field="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                        <input type="hidden" name="MenuHeaderIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
                 </div>
                 <div class="card-footer justify-content-end d-flex p-5">
@@ -113,56 +47,23 @@
             </form>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-sm-6">
         <div class="card mb-5">
             <form id="MenuForm" autocomplete="off">
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Menü Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Seçiniz" name="editMenu" id="editMenu">
+                            <option></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="mb-5 d-flex justify-content-center">
-                        <!--begin::Image input-->
-                        <div class="image-input image-input-circle image-input-empty" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
-                            <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" ></div>
-                            <!--end::Image preview wrapper-->
-                            <!--begin::Edit button-->
-                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkon Değiştir">
-                                <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-                                <!--begin::Inputs-->
-                                <input type="file" name="file" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="avatar_remove" />
-                                <!--end::Inputs-->
-                            </label>
-                            <!--end::Edit button-->
-                            <!--begin::Cancel button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Kaldır">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Cancel button-->
-                            <!--begin::Remove button-->
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove"
-                            data-bs-toggle="tooltip"
-                            data-bs-dismiss="click"
-                            title="İkonu Sil">
-                                <i class="ki-outline ki-cross fs-3"></i>
-                            </span>
-                            <!--end::Remove button-->
-                        </div>
-                        <!--end::Image input-->
-                    </div>
-                    <div class="mb-5">
+                    <div class="mb-5 position-relative">
                         <label for="MenuText" class="required form-label form-label-sm">Menü Adı</label>
                         <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuText" data-field="MenuText" name="MenuText" placeholder="Menü Adı"/>
+                        <input type="hidden" name="MenuIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
                     <div class="mb-5">
                         <label for="MenuHeaderId" class="required form-label form-label-sm">Menü Başlığı</label>
@@ -195,162 +96,86 @@
         <form id="ModuleMenuForm" class="card card-bordered">
             <div class="card-header p-5 min-h-auto">
                 <h3 class="card-title m-0">Menü Atama</h3>
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <button type="button" id="module-menu-reload-button" class="btn btn-sm btn-icon btn-secondary rounded-circle"><i class="fa-solid fa-repeat"></i></button>
+                    </div>
+                    <div class="d-sm-flex">
+                        <div class="me-3 mb-sm-0 mb-3">
+                            <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Modül Seçiniz" name="moduleList" id="moduleList">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="me-3">
+                            <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Seçiniz" name="menuList" id="menuList">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="me-3">
+                        <button type="button" class="btn btn-sm btn-primary" id="add_menu_to_module">Ekle</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-3">
                 <div data-module-menu-area class="d-flex align-items-baseline hover-scroll-x min-h-200px py-5">
                 </div>
             </div>
-            <div class="card-footer justify-content-end d-flex p-5">
-                <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+        </form>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="edit_modul_modal">
+    <div class="modal-dialog">
+        <form id="edit_modul" data-modul-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Modül Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <label class="required form-label form-label-sm">Modül Adı</label>
+                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" data-field="ModuleText" name="ModuleText" placeholder="Modül"/>
+                            <input type="hidden" name="ModalModuleIconPath">
+                            @await Html.PartialAsync("_IconSelectDropdown")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
             </div>
         </form>
     </div>
 </div>
-<script>
-    new Tagify(document.querySelector("#MenuKeyword"),{maxTags:15});
-    $(document).ready(function(){
-        reloadMenuHeaderSelect();
-        reloadApplicationRoles();
-        getModuleMenuConnect();
-        activateDraggable();
-    });
-    function getModuleMenuConnect(){
-        $.ajax({
-            url: "/Management/GetModuleMenus",
-            async: true,
-            type: "GET",
-        }).then(function(response){
-            console.log(response);
-            for(let module of response.modules){
-                const moduleAreaHtml = `
-                    <div data-area-draggable="${module.moduleId}" class="min-w-250px min-h-200px draggable-zone mx-2 border border-2 border-gray-500 py-3 rounded">
-                        <div class="card-title m-0 d-flex justify-content-center">${module.moduleText}</div>
-                    </div>`;
-                $('[data-module-menu-area]').append(moduleAreaHtml);
-            }
-            for(let moduleMenu of response.moduleMenus){
-                const areaMenuHtml = `
-                    <div data-module-menu="${moduleMenu.moduleMenuId}" data-draggable-card="${moduleMenu.menuId}" class="draggable p-3 d-flex justify-content-between bg-info rounded align-items-center m-2" style="flex-shrink: initial;" tabindex="0">
-                        <h3 class="card-label fs-6 text-break">${moduleMenu.menu.menuText}</h3>
-                        <a href="#" class="btn btn-icon btn-hover-light-primary draggable-handle">
-                            <i class="fa-solid fa-arrows-up-down-left-right text-dark fs-1"></i>
-                        </a>
-                    </div>`;
-                $(`[data-area-draggable="${moduleMenu.moduleId}"]`).append(areaMenuHtml);
-            }
-            activateDraggable();
-        });
-    }
-    $('#ModuleMenuForm').on("submit",function(e){
-        e.preventDefault();
-        //$.ajax({url:'/Management/ClearModuleMenuTable',type: 'GET'});
-        $('[data-area-draggable]').each(function(){
-            var moduleId = $(this).data("area-draggable");
-            var menuids = [];
-            $(this).find("[data-draggable-card]").each(function(){
-                var menuid = $(this).data("draggable-card");
-                menuids.push(menuid);
-            });
-            $.ajax({
-                url: '/Management/ModuleByMenu',
-                async: true,
-                type: 'GET',
-                data: {
-                    moduleId: moduleId,
-                    menuIds: JSON.stringify(menuids),
-                }
-            }).then(function(result){
-                console.log(result);
-            });
-        });
-    });
-    function reloadApplicationRoles(){
-        $('#ApplicationRoleId').empty();
-        $('#ApplicationRoleId').append("<option></option>");
-        $.ajax({
-            url: "/Management/GetRoles",
-            async: true,
-            type: "GET",
-        }).then(function(response){
-            for(let item of response){
-                $('#ApplicationRoleId').append(`<option value="${item.id}">${item.name}</option>`)
-            }
-        });
-    }
-    function reloadMenuHeaderSelect(){
-        $('#MenuHeaderId').empty();
-        $('#MenuHeaderId').append("<option></option>");
-        $.ajax({
-            url: "/Management/GetMenuHeaders",
-            async: true,
-            type: "GET",
-        }).then(function(response){
-            for(let item of response){
-                $('#MenuHeaderId').append(`<option value="${item.menuHeaderId}">${item.menuHeaderText}</option>`)
-            }
-        });
-    }
-    $('#MenuForm').on("submit",function(e){
-        e.preventDefault();
-        if(!checkInputs('MenuForm')) return;
-        var formData = new FormData(this);
-        $.ajax({
-            url: "/Management/SaveMenu",
-            type: 'POST',
-            async: true,
-            data: formData,
-            processData: false,
-            contentType: false,
-        }).then(function(result){
-            if(result){
-                successAlert("Menü Başarıyla Oluşturuldu");
-                removeInputValue('MenuForm');
-            }
-            else{
-                errorAlert("Modül Oluşturulamadı");
-            }
-        })
-    });
-    $('#ModuleForm').on("submit",function(e){
-        e.preventDefault();
-        if(!checkInputs('ModuleForm')) return;
-        var formData = new FormData(this);
-        $.ajax({
-            url: "/Management/SaveModule",
-            type: 'POST',
-            async: true,
-            data: formData,
-            processData: false,
-            contentType: false,
-        }).then(function(result){
-            if(result){
-                successAlert("Modül Başarıyla Oluşturuldu");
-                removeInputValue('ModuleForm');
-            }
-            else{
-                errorAlert("Modül Oluşturulamadı");
-            }
-        })
-    });
-    $('#MenuHeaderForm').on("submit",function(e){
-        e.preventDefault();
-        if(!checkInputs('MenuHeaderForm')) return;
-        var formData = new FormData(this);
-        $.ajax({
-            url: "/Management/SaveMenuHeader",
-            type: 'POST',
-            async: true,
-            data: formData,
-            processData: false,
-            contentType: false,
-        }).then(function(result){
-            if(result){
-                successAlert("Menu Başlığı Başarıyla Oluşturuldu");
-                removeInputValue('MenuHeaderForm');
-            }
-            else{
-                errorAlert("Menu Başlığı Oluşturulamadı");
-            }
-        })
-    });
-</script>
+<div class="modal fade" tabindex="-1" id="edit_menuheader_modal">
+    <div class="modal-dialog">
+        <form id="edit_menuHeader" data-menu-header-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Menü Başlığı Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <label class="required form-label form-label-sm">Menü Başlığı Adı</label>
+                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" data-field="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                            <input type="hidden" name="ModalMenuHeaderIconPath">
+                            @await Html.PartialAsync("_IconSelectDropdown")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/assets/js/page/Management.CreateMenu.js"></script>

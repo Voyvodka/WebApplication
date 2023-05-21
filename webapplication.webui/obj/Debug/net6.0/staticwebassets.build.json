@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zgU6TitYzO4PNp2nX5WrbKWjfu7MlKaqvdUDwMXFeuw=",
+  "Hash": "xqtZp2Nu2hZszDxCZRJfE8PpQsmD9p/B2e6LGDsdrUU=",
   "Source": "webapplication.webui",
   "BasePath": "_content/webapplication.webui",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\0b1433fe-2fa5-4d80-9a47-e3850cd1f007.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\app\\media\\MenuIcons\\146d84ea-8498-4702-879d-5c6c66113d22.jpeg",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "app/media/MenuIcons/146d84ea-8498-4702-879d-5c6c66113d22.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\146d84ea-8498-4702-879d-5c6c66113d22.jpeg"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\app\\media\\MenuIcons\\a4a0afda-6bd0-44db-8794-2606ba3f26db.jpeg",
@@ -66,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app\\media\\MenuIcons\\f7ae13b1-1028-4f16-af67-6f1bd5ea7f55.png"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\ripple.css",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "assets/css/ripple.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\ripple.css"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\css\\style.bundle.css",
@@ -2242,6 +2276,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\draggable.js"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\page\\Management.CreateMenu.js",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "assets/js/page/Management.CreateMenu.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\page\\Management.CreateMenu.js"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\ripple.js",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "assets/js/ripple.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\ripple.js"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\scripts.bundle.js",

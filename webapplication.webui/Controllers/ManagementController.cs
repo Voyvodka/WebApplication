@@ -38,27 +38,26 @@ namespace webapplication.webui.Controllers
             ViewData["Title"] = "Menu Tanımlamaları";
             return View();
         }
-        public bool SaveModule(Module module, IFormFile file)
+        [HttpPost]
+        public bool SaveModule(Module module)
         {
             if (String.IsNullOrEmpty(module.ModuleText)) return false;
             _moduleService.Add(module);
-            if (file != null) _fileService.AddForModule(file, module);
             return true;
         }
-        public bool SaveMenuHeader(MenuHeader menuHeader, IFormFile file)
+        public bool SaveMenuHeader(MenuHeader menuHeader)
         {
             if (String.IsNullOrEmpty(menuHeader.MenuHeaderText)) return false;
             _menuHeaderService.Add(menuHeader);
-            if (file != null) _fileService.AddForMenuHeader(file, menuHeader);
             return true;
         }
-        public List<MenuHeader> GetMenuHeaders() => _menuHeaderService.GetAll().Data;
         public async Task<List<ApplicationRole>> GetRoles()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return roles;
         }
-        public bool SaveMenu(Menu menu, IFormFile file)
+        [HttpPost]
+        public bool SaveMenu(Menu menu)
         {
             var keywords = JsonConvert.DeserializeObject<dynamic[]>(menu.MenuKeyword);
             menu.MenuKeyword = "";
@@ -71,7 +70,6 @@ namespace webapplication.webui.Controllers
             }
             if (String.IsNullOrEmpty(menu.MenuText)) return false;
             _menuService.Add(menu);
-            //if (file != null) _fileService.AddForMenuHeader(file, menu);
             return true;
         }
         public object GetModuleMenus()
@@ -88,23 +86,52 @@ namespace webapplication.webui.Controllers
             });
             return data;
         }
-        // public bool ClearModuleMenuTable()
-        // {
-        //     _moduleMenuService.GetAll().Data.ForEach(item => _moduleMenuService.Delete(item));
-        //     return true;
-        // }
-        public bool ModuleByMenu(int moduleId, string menuIds)
+        [HttpPost]
+        public bool AddMenuToModule(int moduleId, int menuId)
         {
-            if (String.IsNullOrEmpty(menuIds) || menuIds == "[]") return false;
-            foreach (var id in JsonConvert.DeserializeObject<int[]>(menuIds))
+            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+            var menu = _menuService.GetSingle(c => c.MenuId == menuId).Data;
+            if (menu == null || module == null || _moduleMenuService.GetAll(c => c.ModuleId == moduleId && c.MenuId == menuId).Data.Any()) return false;
+            _moduleMenuService.Add(new ModuleMenu
             {
-                _moduleMenuService.Add(new ModuleMenu
-                {
-                    MenuId = id,
-                    ModuleId = moduleId,
-                });
-            }
+                MenuId = menuId,
+                ModuleId = moduleId
+            });
             return true;
         }
+        [HttpPost]
+        public bool RemoveModuleMenus(int moduleId, int menuId, int moduleMenuId)
+        {
+            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+            var menu = _menuService.GetSingle(c => c.MenuId == menuId).Data;
+            var moduleMenu = _moduleMenuService.GetSingle(c => c.ModuleMenuId == moduleMenuId).Data;
+            if (module == null || menu == null || moduleMenu == null) return false;
+            if (moduleMenu.ModuleId != module.ModuleId && moduleMenu.MenuId != menu.MenuId) return false;
+            _moduleMenuService.Delete(moduleMenu);
+            return true;
+        }
+        public bool UpdateModule(int moduleId, string moduleText, string moduleIcon)
+        {
+            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+            if (module == null || String.IsNullOrEmpty(moduleText)) return false;
+            module.ModuleText = moduleText;
+            module.ModuleIconPath = moduleIcon;
+            _moduleService.Update(module);
+            return true;
+        }
+        public bool UpdateMenuHeader(int menuHeaderId, string menuHeaderText, string menuHeaderIcon)
+        {
+            var menuHeader = _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
+            if (menuHeader == null || String.IsNullOrEmpty(menuHeaderText)) return false;
+            menuHeader.MenuHeaderText = menuHeaderText;
+            menuHeader.MenuHeaderIconPath = menuHeaderIcon;
+            _menuHeaderService.Update(menuHeader);
+            return true;
+        }
+        public MenuHeader GetMenuHeader(int menuHeaderId) => _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
+        public Module GetModule(int moduleId) => _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+        public List<Module> GetModuleList() => _moduleService.GetAll(c => !c.Passive).Data;
+        public List<Menu> GetMenuList() => _menuService.GetAll(c => !c.Passive).Data;
+        public List<MenuHeader> GetMenuHeaderList() => _menuHeaderService.GetAll(c => !c.Passive).Data;
     }
 }
