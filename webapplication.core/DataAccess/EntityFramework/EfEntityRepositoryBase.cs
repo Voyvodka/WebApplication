@@ -54,7 +54,8 @@ namespace webapplication.core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().Where(filter).SingleOrDefault();
+                return context.Set<TEntity>().SingleOrDefault(filter) ?? default!;
+                // return context.Set<TEntity>().Where(filter).SingleOrDefault();
             }
         }
     }

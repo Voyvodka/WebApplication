@@ -1,9 +1,6 @@
 using webapplication.entity.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using webapplication.webui.ViewModels;
@@ -63,7 +60,7 @@ namespace webapplication.webui.Controllers
                 return View(p);
             }
         }
-        public async Task<IActionResult> GoogleLogin(string returnUrl)
+        public IActionResult GoogleLogin(string returnUrl)
         {
             var redirectUrl = Url.Action(nameof(GoogleCallback), "Auth", new { ReturnUrl = returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);

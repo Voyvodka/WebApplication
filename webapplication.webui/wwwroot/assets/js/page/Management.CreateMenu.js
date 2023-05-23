@@ -1,20 +1,35 @@
 new Tagify(document.querySelector("#MenuKeyword"), { maxTags: 15 });
+var menuTag = new Tagify(document.querySelector("#EditModalMenuKeyword"), { maxTags: 15 });
 $(document).ready(function () {
-  reloadMenuHeaderList("MenuHeaderId");
-  reloadApplicationRoles();
+  reloadApplicationRoles("ApplicationRoleId");
   getModuleMenuConnect();
   reloadModuleList("moduleList");
   reloadModuleList("editModule");
   reloadMenuList("menuList");
   reloadMenuList("editMenu");
+  reloadMenuHeaderList("MenuHeaderId");
   reloadMenuHeaderList("editMenuHeader");
-  activateDraggableModal("edit_modul_modal");
+  activateDraggableModal("edit_modul");
+  activateDraggableModal("edit_menuHeader");
+  activateDraggableModal("edit_menu");
 });
 $("#module-menu-reload-button").on("click", function () {
   getModuleMenuConnect();
   reloadModuleList("moduleList");
   reloadMenuList("menuList");
 });
+function reloadApplicationRoles(select) {
+  $.ajax({
+    url: "/Management/GetRoles",
+    async: true,
+    type: "GET",
+  }).then(function (response) {
+    $(`#${select}`).html("<option></option>");
+    for (let role of response) {
+      $(`#${select}`).append(`<option value="${role.id}">${role.name}</option>`);
+    }
+  });
+}
 function reloadModuleList(select) {
   $.ajax({
     url: "/Management/GetModuleList",
@@ -132,19 +147,6 @@ function removeMenuFromModule(elem) {
     }
   });
 }
-function reloadApplicationRoles() {
-  $("#ApplicationRoleId").empty();
-  $("#ApplicationRoleId").append("<option></option>");
-  $.ajax({
-    url: "/Management/GetRoles",
-    async: true,
-    type: "GET",
-  }).then(function (response) {
-    for (let item of response) {
-      $("#ApplicationRoleId").append(`<option value="${item.id}">${item.name}</option>`);
-    }
-  });
-}
 $("#ModuleForm").on("submit", function (e) {
   console.log("aa");
   e.preventDefault();
@@ -255,7 +257,6 @@ $("#edit_modul").on("submit", function (e) {
   });
 });
 $("#editMenuHeader").on("select2:select", function () {
-  console.l;
   var elem = $(this);
   $("#edit_menuheader_modal").find("[data-menu-header-id]").attr("data-menu-header-id", elem.val());
   $.ajax({

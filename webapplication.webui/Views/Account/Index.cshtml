@@ -1,9 +1,11 @@
 @model AccountViewModel
 @{
+  if(Model.User != null){
     if (Model.User.ImagePath == null)
     {
-        Model.User.ImagePath = "/assets/media/avatars/300-1.jpg";
+      Model.User.ImagePath = "/assets/media/avatars/300-1.jpg";
     }
+  }
 }
 <!--begin::Toolbar-->
 <div class="toolbar mb-5 mb-lg-7" id="kt_toolbar">

@@ -5,7 +5,7 @@
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Modül Oluştur</h3>
                     <div>
-                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editModule" id="editModule">
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editModule" id="editModule" data-allow-clear="true">
                             <option></option>
                         </select>
                     </div>
@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="position-relative">
                         <label for="ModuleText" class="required form-label form-label-sm">Modül Adı</label>
-                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="ModuleText" data-field="ModuleText" name="ModuleText" placeholder="Modül Adı"/>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="ModuleText" name="ModuleText" placeholder="Modül Adı"/>
                         <input type="hidden" name="ModuleIconPath" data-icon-path>
                         @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
@@ -28,7 +28,7 @@
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Menü Başlığı Oluştur</h3>
                     <div>
-                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editMenuHeader" id="editMenuHeader">
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editMenuHeader" id="editMenuHeader" data-allow-clear="true">
                             <option></option>
                         </select>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="position-relative">
                         <label for="MenuHeaderText" class="required form-label form-label-sm">Menü Başlık Adı</label>
-                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHeaderText" data-field="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
                         <input type="hidden" name="MenuHeaderIconPath" data-icon-path>
                         @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
@@ -53,7 +53,7 @@
                 <div class="card-header p-5 min-h-auto" >
                     <h3 class="card-title m-0">Menü Oluştur</h3>
                     <div>
-                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Seçiniz" name="editMenu" id="editMenu">
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Seçiniz" name="editMenu" id="editMenu" data-allow-clear="true">
                             <option></option>
                         </select>
                     </div>
@@ -61,13 +61,13 @@
                 <div class="card-body">
                     <div class="mb-5 position-relative">
                         <label for="MenuText" class="required form-label form-label-sm">Menü Adı</label>
-                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuText" data-field="MenuText" name="MenuText" placeholder="Menü Adı"/>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuText" name="MenuText" placeholder="Menü Adı"/>
                         <input type="hidden" name="MenuIconPath" data-icon-path>
                         @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
                     <div class="mb-5">
                         <label for="MenuHeaderId" class="required form-label form-label-sm">Menü Başlığı</label>
-                        <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Başlığı Seçiniz" name="MenuHeaderId" id="MenuHeaderId">
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Başlığı Seçiniz" name="MenuHeaderId" id="MenuHeaderId" data-allow-clear="true">
                             <option></option>
                         </select>
                     </div>
@@ -77,11 +77,11 @@
                     </div>
                     <div class="mb-5">
                         <label for="MenuHref" class="required form-label form-label-sm">Menü Linki</label>
-                        <input required type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHref" data-field="MenuHref" name="MenuHref" placeholder="Menü Linki (/controller/action)"/>
+                        <input required type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="MenuHref" name="MenuHref" placeholder="Menü Linki (/controller/action)"/>
                     </div>
                     <div class="mb-5">
                         <label for="ApplicationRoleId" class="required form-label form-label-sm">Menü Rol</label>
-                        <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="ApplicationRoleId">
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="ApplicationRoleId" data-allow-clear="true">
                             <option></option>
                         </select>
                     </div>
@@ -102,12 +102,12 @@
                     </div>
                     <div class="d-sm-flex">
                         <div class="me-3 mb-sm-0 mb-3">
-                            <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Modül Seçiniz" name="moduleList" id="moduleList">
+                            <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Modül Seçiniz" name="moduleList" id="moduleList" data-allow-clear="true">
                                 <option></option>
                             </select>
                         </div>
                         <div class="me-3">
-                            <select required class="form-select form-select-sm form-select-solid" data-control="select2" data-placeholder="Menü Seçiniz" name="menuList" id="menuList">
+                            <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Seçiniz" name="menuList" id="menuList" data-allow-clear="true">
                                 <option></option>
                             </select>
                         </div>
@@ -138,7 +138,7 @@
                     <div class="card-body">
                         <div class="position-relative">
                             <label class="required form-label form-label-sm">Modül Adı</label>
-                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" data-field="ModuleText" name="ModuleText" placeholder="Modül"/>
+                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="ModuleText" placeholder="Modül"/>
                             <input type="hidden" name="ModalModuleIconPath">
                             @await Html.PartialAsync("_IconSelectDropdown")
                         </div>
@@ -161,14 +161,12 @@
                 </div>
             </div>
             <div class="modal-body p-3">
-                <div>
-                    <div class="card-body">
-                        <div class="position-relative">
-                            <label class="required form-label form-label-sm">Menü Başlığı Adı</label>
-                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" data-field="MenuHeaderText" name="MenuHeaderText" placeholder="Menü Başlığı"/>
-                            <input type="hidden" name="ModalMenuHeaderIconPath">
-                            @await Html.PartialAsync("_IconSelectDropdown")
-                        </div>
+                <div class="card-body">
+                    <div class="position-relative">
+                        <label class="required form-label form-label-sm">Menü Başlığı Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                        <input type="hidden" name="ModalMenuHeaderIconPath">
+                        @await Html.PartialAsync("_IconSelectDropdown")
                     </div>
                 </div>
             </div>
@@ -178,4 +176,105 @@
         </form>
     </div>
 </div>
+<div class="modal fade" tabindex="-1" id="edit_menu_modal">
+    <div class="modal-dialog">
+        <form id="edit_menu" data-menu-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Menü Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div class="card-body">
+                    <div class="position-relative mb-3">
+                        <label class="required form-label form-label-sm">Menü Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="MenuText" placeholder="Menü"/>
+                        <input type="hidden" name="ModalMenuIconPath">
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Menü Başlığı</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-dropdown-parent="#edit_menu_modal" data-control="select2" data-placeholder="Menü Başlığı Seçiniz" name="MenuHeaderId" id="editMenu_menuHeaders" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Anahtar Kelimeler</label>
+                        <input required class="form-control form-control-sm form-control-solid" placeholder="Anahtar Kelime Ekleyiniz" name="MenuKeyword" id="EditModalMenuKeyword"/>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Menü Linki</label>
+                        <input required type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="MenuHref" placeholder="Menü Linki (/controller/action)"/>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Menü Rol</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-dropdown-parent="#edit_menu_modal" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="EditModalRoles" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#editMenu").on("select2:select", function () {
+  var elem = $(this);
+  $("#edit_menu_modal").find("[data-menu-id]").attr("data-menu-id", elem.val());
+  $.ajax({
+    url: "/Management/GetMenu",
+    type: "GET",
+    data: { menuId: elem.val() },
+  })
+    .done(function (response) {
+        console.log(response);
+      if (response && response.menuText !== undefined) {
+        reloadMenuHeaderList("editMenu_menuHeaders");
+        reloadApplicationRoles("EditModalRoles");
+        $("#edit_menu_modal").modal("show");
+        $('#edit_menu_modal [name="MenuText"]').val(response.menuText);
+        $('#edit_menu_modal [name="MenuHref"]').val(response.menuHref);
+        $('#edit_menu_modal [name="MenuHeaderId"]').val(response.menuHeaderId).trigger("change");
+        $('#edit_menu_modal [name="ApplicationRoleId"]').val(response.applicationRoleId).trigger("change");
+        $('[name="ModalMenuIconPath"]').val(response.menuIconPath);
+        menuTag.removeAllTags();
+        menuTag.addTags(response.menuKeyword.split("~"));
+        $('#EditModalMenuKeyword')
+        if (response.menurIconPath) {
+          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass(response.menuIconPath);
+        } else {
+          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass("fa-solid fa-icons");
+        }
+      }
+    })
+    .fail(function (e) {
+      console.error(e);
+    });
+});
+$("#edit_menu_modal").on("hide.bs.modal", function () {
+  $("#editMenu").val(null).trigger("change");
+});
+$("#edit_menu").on("submit", function (e) {
+  e.preventDefault();
+  var formData = new FormData($(this)[0]);
+  for(let item of formData){
+    console.log(item);
+  }
+  $.ajax({
+    url: "/Management/UpdateMenu",
+    type: "POST",
+    data: formData,
+  }).done(function (response) {
+    console.log(response);
+    if (response) {
+      $("#edit_menu_modal").modal("hide");
+      reloadMenuList("editMenu");
+    }
+  });
+});
+</script>
 <script src="/assets/js/page/Management.CreateMenu.js"></script>

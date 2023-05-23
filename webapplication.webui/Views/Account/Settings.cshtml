@@ -129,8 +129,10 @@
                     <div class="col-lg-8 fv-row fv-plugins-icon-container">
                         <select class="form-select" data-control="select2" data-placeholder="Ülke Seçiniz">
                             <option></option>
-                            @foreach(var item in Model.Countries){
-                                <option value="@item.id">@item.name</option>
+                            @if(Model.Countries != null){
+                                foreach(var item in Model.Countries){
+                                    <option value="@item.id">@item.name</option>
+                                }
                             }
                         </select>
                     </div>

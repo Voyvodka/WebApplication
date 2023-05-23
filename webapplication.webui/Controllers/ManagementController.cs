@@ -110,9 +110,10 @@ namespace webapplication.webui.Controllers
             _moduleMenuService.Delete(moduleMenu);
             return true;
         }
-        public bool UpdateModule(int moduleId, string moduleText, string moduleIcon)
+        public bool UpdateModule(int moduleId, string moduleText, string moduleIcon = "")
         {
             var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+            if (moduleIcon == null) moduleIcon = "";
             if (module == null || String.IsNullOrEmpty(moduleText)) return false;
             module.ModuleText = moduleText;
             module.ModuleIconPath = moduleIcon;
@@ -124,12 +125,18 @@ namespace webapplication.webui.Controllers
             var menuHeader = _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
             if (menuHeader == null || String.IsNullOrEmpty(menuHeaderText)) return false;
             menuHeader.MenuHeaderText = menuHeaderText;
+            if (menuHeaderIcon == null) menuHeaderIcon = "";
             menuHeader.MenuHeaderIconPath = menuHeaderIcon;
             _menuHeaderService.Update(menuHeader);
             return true;
         }
+        public bool UpdateMenu(Menu menu)
+        {
+            return true;
+        }
         public MenuHeader GetMenuHeader(int menuHeaderId) => _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
         public Module GetModule(int moduleId) => _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+        public Menu GetMenu(int menuId) => _menuService.GetSingle(c => c.MenuId == menuId).Data;
         public List<Module> GetModuleList() => _moduleService.GetAll(c => !c.Passive).Data;
         public List<Menu> GetMenuList() => _menuService.GetAll(c => !c.Passive).Data;
         public List<MenuHeader> GetMenuHeaderList() => _menuHeaderService.GetAll(c => !c.Passive).Data;
