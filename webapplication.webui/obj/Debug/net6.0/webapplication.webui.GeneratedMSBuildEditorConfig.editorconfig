@@ -43,8 +43,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Management/CreateMenu.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlbWVudFxDcmVhdGVNZW51LmNzaHRtbA==
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Management/AdminMenuManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlbWVudFxBZG1pbk1lbnVNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Management/MenuManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlbWVudFxNZW51TWFuYWdlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/samet/Desktop/WebApplication/webapplication.webui/Views/Shared/Components/Navbar/_Navbar.cshtml]

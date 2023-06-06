@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xqtZp2Nu2hZszDxCZRJfE8PpQsmD9p/B2e6LGDsdrUU=",
+  "Hash": "qHdFZJuExEzuHilS8vsMB+sbIYwBWBoJziW+7ciYY2U=",
   "Source": "webapplication.webui",
   "BasePath": "_content/webapplication.webui",
   "Mode": "Default",
@@ -2278,12 +2278,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\draggable.js"
     },
     {
-      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\page\\Management.CreateMenu.js",
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\page\\Management.AdminMenuManagement.js",
       "SourceId": "webapplication.webui",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
       "BasePath": "_content/webapplication.webui",
-      "RelativePath": "assets/js/page/Management.CreateMenu.js",
+      "RelativePath": "assets/js/page/Management.AdminMenuManagement.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2292,7 +2292,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\page\\Management.CreateMenu.js"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\page\\Management.AdminMenuManagement.js"
+    },
+    {
+      "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\page\\Management.MenuManagement.js",
+      "SourceId": "webapplication.webui",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\",
+      "BasePath": "_content/webapplication.webui",
+      "RelativePath": "assets/js/page/Management.MenuManagement.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\page\\Management.MenuManagement.js"
     },
     {
       "Identity": "C:\\Users\\samet\\Desktop\\WebApplication\\webapplication.webui\\wwwroot\\assets\\js\\ripple.js",

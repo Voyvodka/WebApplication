@@ -1,0 +1,225 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card mb-5">
+            <form id="ModuleForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Admin Modül Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editModule" id="editModule" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="position-relative">
+                        <label for="AdminModuleText" class="required form-label form-label-sm">Admin Modül Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="ModuleText" name="AdminModuleText" placeholder="Admin Modül Adı"/>
+                        <input type="hidden" name="AdminModuleIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+        <div class="card mb-5">
+            <form id="MenuHeaderForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Admin Menü Başlığı Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Düzenlemek için Seçiniz" name="editMenuHeader" id="editMenuHeader" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="position-relative">
+                        <label for="AdminMenuHeaderText" class="required form-label form-label-sm">Admin Menü Başlık Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="AdminMenuHeaderText" name="AdminMenuHeaderText" placeholder="Admin Menü Başlığı"/>
+                        <input type="hidden" name="AdminMenuHeaderIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card mb-5">
+            <form id="MenuForm" autocomplete="off">
+                <div class="card-header p-5 min-h-auto" >
+                    <h3 class="card-title m-0">Admin Menü Oluştur</h3>
+                    <div>
+                        <select class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Admin Menü Seçiniz" name="editMenu" id="editMenu" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-5 position-relative">
+                        <label for="AdminMenuText" class="required form-label form-label-sm">Admin Menü Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="AdminMenuText" name="AdminMenuText" placeholder="Admin Menü Adı"/>
+                        <input type="hidden" name="AdminMenuIconPath" data-icon-path>
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                    <div class="mb-5">
+                        <label for="AdminMenuHeaderId" class="required form-label form-label-sm">Admin Menü Başlığı</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Admin Menü Başlığı Seçiniz" name="AdminMenuHeaderId" id="MenuHeaderId" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="AdminMenuKeyword" class="required form-label form-label-sm">Anahtar Kelimeler</label>
+                        <input required class="form-control form-control-sm form-control-solid" placeholder="Anahtar Kelime Ekleyiniz" id="AdminMenuKeyword" name="AdminMenuKeyword"/>
+                    </div>
+                    <div class="mb-5">
+                        <label for="AdminMenuHref" class="required form-label form-label-sm">Menü Linki</label>
+                        <input required type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" id="AdminMenuHref" name="AdminMenuHref" placeholder="Menü Linki (/controller/action)"/>
+                    </div>
+                    <div class="mb-5">
+                        <label for="ApplicationRoleId" class="required form-label form-label-sm">Menü Rol</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="ApplicationRoleId" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-end d-flex p-5">
+                    <button type="submit" class="btn btn-sm btn-primary"/>Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="py-5">
+        <form id="ModuleMenuForm" class="card card-bordered">
+            <div class="card-header p-5 min-h-auto">
+                <h3 class="card-title m-0">Admin Menü Atama</h3>
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <button type="button" id="module-menu-reload-button" class="btn btn-sm btn-icon btn-secondary rounded-circle"><i class="fa-solid fa-repeat"></i></button>
+                    </div>
+                    <div class="d-sm-flex">
+                        <div class="me-3 mb-sm-0 mb-3">
+                            <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Admin Modül Seçiniz" name="moduleList" id="moduleList" data-allow-clear="true">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="me-3">
+                            <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-placeholder="Admin Menü Seçiniz" name="menuList" id="menuList" data-allow-clear="true">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="me-3">
+                        <button type="button" class="btn btn-sm btn-primary" id="add_menu_to_module">Ekle</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-3">
+                <div data-module-menu-area class="d-flex align-items-baseline hover-scroll-x min-h-200px py-5">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="edit_modul_modal">
+    <div class="modal-dialog">
+        <form id="edit_modul" data-modul-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Admin Modül Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <label class="required form-label form-label-sm">Modül Adı</label>
+                            <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="ModuleText" placeholder="Modül"/>
+                            <input type="hidden" name="ModalModuleIconPath">
+                            @await Html.PartialAsync("_IconSelectDropdown")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="edit_menuheader_modal">
+    <div class="modal-dialog">
+        <form id="edit_menuHeader" data-menu-header-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Admin Menü Başlığı Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div class="card-body">
+                    <div class="position-relative">
+                        <label class="required form-label form-label-sm">Admin Menü Başlığı Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="MenuHeaderText" placeholder="Menü Başlığı"/>
+                        <input type="hidden" name="ModalMenuHeaderIconPath">
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="edit_menu_modal">
+    <div class="modal-dialog">
+        <form id="edit_menu" data-menu-id class="modal-content position-absolute">
+            <div class="modal-header px-3 py-1">
+                <h5 class="modal-title">Admin Menü Düzenleme</h5>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <div class="modal-body p-3">
+                <div class="card-body">
+                    <input type="hidden" name="AdminMenuId">
+                    <div class="position-relative mb-3">
+                        <label class="required form-label form-label-sm">Admin Menü Adı</label>
+                        <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="AdminMenuText" placeholder="Menü"/>
+                        <input type="hidden" name="AdminModalMenuIconPath">
+                        @await Html.PartialAsync("_IconSelectDropdown")
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Admin Menü Başlığı</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-dropdown-parent="#edit_menu_modal" data-control="select2" data-placeholder="Menü Başlığı Seçiniz" name="AdminMenuHeaderId" id="editMenu_menuHeaders" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Anahtar Kelimeler</label>
+                        <input required class="form-control form-control-sm form-control-solid" placeholder="Anahtar Kelime Ekleyiniz" name="AdminMenuKeyword" id="EditModalMenuKeyword"/>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Admin Menü Linki</label>
+                        <input required type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="AdminMenuHref" placeholder="Menü Linki (/controller/action)"/>
+                    </div>
+                    <div class="mb-5">
+                        <label class="required form-label form-label-sm">Menü Rol</label>
+                        <select required class="form-select form-select-sm form-select-solid min-w-150px" data-control="select2" data-dropdown-parent="#edit_menu_modal" data-placeholder="Menü Rolü Seçiniz" name="ApplicationRoleId" id="EditModalRoles" data-allow-clear="true">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-3">
+                <button type="submit" class="btn btn-sm btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/assets/js/page/Management.AdminMenuManagement.js"></script>

@@ -1,5 +1,5 @@
 using webapplication.core.DataAccess;
-using webapplication.entity.Menu;
+using webapplication.entity;
 namespace webapplication.dataaccess.Abstracts
 {
     public interface IModuleDal : IEntityRepository<Module>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using webapplication.business.Abstracts;
 using webapplication.entity.Identity;
-using webapplication.entity.Menu;
+using webapplication.entity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 namespace webapplication.webui.Controllers
@@ -17,14 +17,22 @@ namespace webapplication.webui.Controllers
         private readonly IMenuHeaderService _menuHeaderService;
         private readonly IModuleService _moduleService;
         private readonly IModuleMenuService _moduleMenuService;
+        private readonly IAdminMenuService _adminMenuService;
+        private readonly IAdminMenuHeaderService _adminMenuHeaderService;
+        private readonly IAdminModuleService _adminModuleService;
+        private readonly IAdminModuleMenuService _adminModuleMenuService;
         private readonly IFileService _fileService;
-        public ManagementController(RoleManager<ApplicationRole> roleManager, IFileService fileService, IMenuService menuService, IMenuHeaderService menuHeaderService, IModuleService moduleService, IModuleMenuService moduleMenuService, UserManager<ApplicationUser> userManager)
+        public ManagementController(RoleManager<ApplicationRole> roleManager, IFileService fileService, IMenuService menuService, IMenuHeaderService menuHeaderService, IModuleService moduleService, IModuleMenuService moduleMenuService, IAdminMenuService adminMenuService, IAdminMenuHeaderService adminMenuHeaderService, IAdminModuleService adminModuleService, IAdminModuleMenuService adminModuleMenuService, UserManager<ApplicationUser> userManager)
         {
             _fileService = fileService;
             _menuService = menuService;
             _menuHeaderService = menuHeaderService;
             _moduleService = moduleService;
             _moduleMenuService = moduleMenuService;
+            _adminMenuService = adminMenuService;
+            _adminMenuHeaderService = adminMenuHeaderService;
+            _adminModuleService = adminModuleService;
+            _adminModuleMenuService = adminModuleMenuService;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -33,7 +41,7 @@ namespace webapplication.webui.Controllers
             ViewData["Title"] = "Ana Sayfa";
             return View();
         }
-        public IActionResult CreateMenu()
+        public IActionResult MenuManagement()
         {
             ViewData["Title"] = "Menu Tanımlamaları";
             return View();
@@ -42,19 +50,17 @@ namespace webapplication.webui.Controllers
         public bool SaveModule(Module module)
         {
             if (String.IsNullOrEmpty(module.ModuleText)) return false;
+            if (String.IsNullOrEmpty(module.ModuleIconPath)) module.ModuleIconPath = "";
             _moduleService.Add(module);
             return true;
         }
+        [HttpPost]
         public bool SaveMenuHeader(MenuHeader menuHeader)
         {
             if (String.IsNullOrEmpty(menuHeader.MenuHeaderText)) return false;
+            if (String.IsNullOrEmpty(menuHeader.MenuHeaderIconPath)) menuHeader.MenuHeaderIconPath = "";
             _menuHeaderService.Add(menuHeader);
             return true;
-        }
-        public async Task<List<ApplicationRole>> GetRoles()
-        {
-            var roles = await _roleManager.Roles.ToListAsync();
-            return roles;
         }
         [HttpPost]
         public bool SaveMenu(Menu menu)
@@ -69,6 +75,7 @@ namespace webapplication.webui.Controllers
                 }
             }
             if (String.IsNullOrEmpty(menu.MenuText)) return false;
+            if (menu.MenuIconPath == null) menu.MenuIconPath = "";
             _menuService.Add(menu);
             return true;
         }
@@ -110,7 +117,7 @@ namespace webapplication.webui.Controllers
             _moduleMenuService.Delete(moduleMenu);
             return true;
         }
-        public bool UpdateModule(int moduleId, string moduleText, string moduleIcon = "")
+        public bool UpdateModule(int moduleId, string moduleText, string moduleIcon)
         {
             var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
             if (moduleIcon == null) moduleIcon = "";
@@ -130,8 +137,21 @@ namespace webapplication.webui.Controllers
             _menuHeaderService.Update(menuHeader);
             return true;
         }
+        [HttpPost]
         public bool UpdateMenu(Menu menu)
         {
+            var keywords = JsonConvert.DeserializeObject<dynamic[]>(menu.MenuKeyword);
+            menu.MenuKeyword = "";
+            if (keywords != null)
+            {
+                for (var i = 0; i < keywords.Length; i++)
+                {
+                    menu.MenuKeyword += keywords[i].value + "~";
+                }
+            }
+            if (menu.MenuIconPath == null) menu.MenuIconPath = "";
+            if (String.IsNullOrEmpty(menu.MenuText)) return false;
+            _menuService.Update(menu);
             return true;
         }
         public MenuHeader GetMenuHeader(int menuHeaderId) => _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
@@ -140,5 +160,125 @@ namespace webapplication.webui.Controllers
         public List<Module> GetModuleList() => _moduleService.GetAll(c => !c.Passive).Data;
         public List<Menu> GetMenuList() => _menuService.GetAll(c => !c.Passive).Data;
         public List<MenuHeader> GetMenuHeaderList() => _menuHeaderService.GetAll(c => !c.Passive).Data;
+        public async Task<List<ApplicationRole>> GetRoles() => await _roleManager.Roles.ToListAsync();
+        public IActionResult AdminMenuManagement()
+        {
+            ViewData["Title"] = "Admin Menu Tanımlamaları";
+            return View();
+        }
+        [HttpPost]
+        public bool SaveAdminModule(AdminModule adminModule)
+        {
+            if (String.IsNullOrEmpty(adminModule.AdminModuleText)) return false;
+            if (String.IsNullOrEmpty(adminModule.AdminModuleIconPath)) adminModule.AdminModuleIconPath = "";
+            _adminModuleService.Add(adminModule);
+            return true;
+        }
+        [HttpPost]
+        public bool SaveAdminMenuHeader(AdminMenuHeader adminMenuHeader)
+        {
+            if (String.IsNullOrEmpty(adminMenuHeader.AdminMenuHeaderText)) return false;
+            if (String.IsNullOrEmpty(adminMenuHeader.AdminMenuHeaderIconPath)) adminMenuHeader.AdminMenuHeaderIconPath = "";
+            _adminMenuHeaderService.Add(adminMenuHeader);
+            return true;
+        }
+        [HttpPost]
+        public bool SaveAdminMenu(AdminMenu adminMenu)
+        {
+            var keywords = JsonConvert.DeserializeObject<dynamic[]>(adminMenu.AdminMenuKeyword);
+            adminMenu.AdminMenuKeyword = "";
+            if (keywords != null)
+            {
+                for (var i = 0; i < keywords.Length; i++)
+                {
+                    adminMenu.AdminMenuKeyword += keywords[i].value + "~";
+                }
+            }
+            if (String.IsNullOrEmpty(adminMenu.AdminMenuText)) return false;
+            if (adminMenu.AdminMenuIconPath == null) adminMenu.AdminMenuIconPath = "";
+            _adminMenuService.Add(adminMenu);
+            return true;
+        }
+        public object GetAdminModuleMenus()
+        {
+            var data = new
+            {
+                moduleMenus = _adminModuleMenuService.GetAll().Data,
+                modules = _adminModuleService.GetAll().Data,
+            };
+            data.moduleMenus.ForEach(item =>
+            {
+                item.AdminMenu = _adminMenuService.GetSingle(c => c.AdminMenuId == item.AdminMenuId).Data;
+                item.AdminMenu.AdminMenuHeader = _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == item.AdminMenu.AdminMenuHeaderId).Data;
+            });
+            return data;
+        }
+        [HttpPost]
+        public bool AdminAddMenuToModule(int moduleId, int menuId)
+        {
+            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
+            var menu = _adminMenuService.GetSingle(c => c.AdminMenuId == menuId).Data;
+            if (menu == null || module == null || _adminModuleMenuService.GetAll(c => c.AdminModuleId == moduleId && c.AdminMenuId == menuId).Data.Any()) return false;
+            _adminModuleMenuService.Add(new AdminModuleMenu
+            {
+                AdminMenuId = menuId,
+                AdminModuleId = moduleId
+            });
+            return true;
+        }
+        [HttpPost]
+        public bool AdminRemoveModuleMenus(int moduleId, int menuId, int moduleMenuId)
+        {
+            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
+            var menu = _adminMenuService.GetSingle(c => c.AdminMenuId == menuId).Data;
+            var moduleMenu = _adminModuleMenuService.GetSingle(c => c.AdminModuleMenuId == moduleMenuId).Data;
+            if (module == null || menu == null || moduleMenu == null) return false;
+            if (moduleMenu.AdminModuleId != module.AdminModuleId && moduleMenu.AdminMenuId != menu.AdminMenuId) return false;
+            _adminModuleMenuService.Delete(moduleMenu);
+            return true;
+        }
+        public bool UpdateAdminModule(int moduleId, string moduleText, string moduleIcon)
+        {
+            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
+            if (moduleIcon == null) moduleIcon = "";
+            if (module == null || String.IsNullOrEmpty(moduleText)) return false;
+            module.AdminModuleText = moduleText;
+            module.AdminModuleIconPath = moduleIcon;
+            _adminModuleService.Update(module);
+            return true;
+        }
+        public bool UpdateAdminMenuHeader(int menuHeaderId, string menuHeaderText, string menuHeaderIcon)
+        {
+            var menuHeader = _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == menuHeaderId).Data;
+            if (menuHeader == null || String.IsNullOrEmpty(menuHeaderText)) return false;
+            menuHeader.AdminMenuHeaderText = menuHeaderText;
+            if (menuHeaderIcon == null) menuHeaderIcon = "";
+            menuHeader.AdminMenuHeaderIconPath = menuHeaderIcon;
+            _adminMenuHeaderService.Update(menuHeader);
+            return true;
+        }
+        [HttpPost]
+        public bool UpdateAdminMenu(AdminMenu menu)
+        {
+            var keywords = JsonConvert.DeserializeObject<dynamic[]>(menu.AdminMenuKeyword);
+            menu.AdminMenuKeyword = "";
+            if (keywords != null)
+            {
+                for (var i = 0; i < keywords.Length; i++)
+                {
+                    menu.AdminMenuKeyword += keywords[i].value + "~";
+                }
+            }
+            if (menu.AdminMenuIconPath == null) menu.AdminMenuIconPath = "";
+            if (String.IsNullOrEmpty(menu.AdminMenuText)) return false;
+            _adminMenuService.Update(menu);
+            return true;
+        }
+        public AdminMenuHeader GetAdminMenuHeader(int adminMenuHeaderId) => _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == adminMenuHeaderId).Data;
+        public AdminModule GetAdminModule(int adminModuleId) => _adminModuleService.GetSingle(c => c.AdminModuleId == adminModuleId).Data;
+        public AdminMenu GetAdminMenu(int adminMenuId) => _adminMenuService.GetSingle(c => c.AdminMenuId == adminMenuId).Data;
+        public List<AdminModule> GetAdminModuleList() => _adminModuleService.GetAll(c => !c.Passive).Data;
+        public List<AdminMenu> GetAdminMenuList() => _adminMenuService.GetAll(c => !c.Passive).Data;
+        public List<AdminMenuHeader> GetAdminMenuHeaderList() => _adminMenuHeaderService.GetAll(c => !c.Passive).Data;
     }
 }

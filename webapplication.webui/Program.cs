@@ -86,9 +86,14 @@ app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-        name: "yonetim/menu-olustur",
-        pattern: "yonetim/menu-olustur",
-        defaults: new { controller = "Management", action = "CreateMenu" }
+        name: "yonetim/adminmenu-yonetimi",
+        pattern: "yonetim/adminmenu-yonetimi",
+        defaults: new { controller = "Management", action = "AdminMenuManagement" }
+    );
+    endpoints.MapControllerRoute(
+        name: "yonetim/menu-yonetimi",
+        pattern: "yonetim/menu-yonetimi",
+        defaults: new { controller = "Management", action = "MenuManagement" }
     );
     endpoints.MapControllerRoute(
         name: "profilim/ayarlar",

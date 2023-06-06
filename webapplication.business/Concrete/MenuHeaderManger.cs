@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using webapplication.business.Abstracts;
 using webapplication.core.Utilities.Results;
 using webapplication.dataaccess.Abstracts;
-using webapplication.entity.Menu;
+using webapplication.entity;
 namespace webapplication.business.Concrete
 {
     public class MenuHeaderManager : IMenuHeaderService

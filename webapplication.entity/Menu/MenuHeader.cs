@@ -1,5 +1,5 @@
 using webapplication.core.Entity.Abstract;
-namespace webapplication.entity.Menu
+namespace webapplication.entity
 {
     public class MenuHeader : IEntity
     {

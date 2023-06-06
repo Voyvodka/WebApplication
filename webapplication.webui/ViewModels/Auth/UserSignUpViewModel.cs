@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace webapplication.webui.ViewModels
 {
     public class UserSignUpViewModel

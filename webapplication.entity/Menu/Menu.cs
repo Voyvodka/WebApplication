@@ -1,6 +1,6 @@
 using webapplication.core.Entity.Abstract;
 using webapplication.entity.Identity;
-namespace webapplication.entity.Menu
+namespace webapplication.entity
 {
     public class Menu : IEntity
     {

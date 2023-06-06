@@ -19,51 +19,75 @@ $("#module-menu-reload-button").on("click", function () {
   reloadMenuList("menuList");
 });
 function reloadApplicationRoles(select) {
-  $.ajax({
-    url: "/Management/GetRoles",
-    async: true,
-    type: "GET",
-  }).then(function (response) {
-    $(`#${select}`).html("<option></option>");
-    for (let role of response) {
-      $(`#${select}`).append(`<option value="${role.id}">${role.name}</option>`);
-    }
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "/Management/GetRoles",
+      type: "GET",
+    })
+      .done(function (response) {
+        $(`#${select}`).html("<option></option>");
+        for (let role of response) {
+          $(`#${select}`).append(`<option value="${role.id}">${role.name}</option>`);
+        }
+        resolve();
+      })
+      .fail(function (error) {
+        reject(error);
+      });
   });
 }
 function reloadModuleList(select) {
-  $.ajax({
-    url: "/Management/GetModuleList",
-    async: true,
-    type: "GET",
-  }).then(function (response) {
-    $(`#${select}`).html("<option></option>");
-    for (let module of response) {
-      $(`#${select}`).append(`<option value="${module.moduleId}">${module.moduleText}</option>`);
-    }
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "/Management/GetModuleList",
+      type: "GET",
+    })
+      .then(function (response) {
+        $(`#${select}`).html("<option></option>");
+        for (let module of response) {
+          $(`#${select}`).append(`<option value="${module.moduleId}">${module.moduleText}</option>`);
+        }
+        resolve();
+      })
+      .fail(function (error) {
+        reject(error);
+      });
   });
 }
 function reloadMenuList(select) {
-  $.ajax({
-    url: "/Management/GetMenuList",
-    async: true,
-    type: "GET",
-  }).then(function (response) {
-    $(`#${select}`).html("<option></option>");
-    for (let menu of response) {
-      $(`#${select}`).append(`<option value="${menu.menuId}">${menu.menuText}</option>`);
-    }
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "/Management/GetMenuList",
+      type: "GET",
+    })
+      .then(function (response) {
+        $(`#${select}`).html("<option></option>");
+        for (let menu of response) {
+          $(`#${select}`).append(`<option value="${menu.menuId}">${menu.menuText}</option>`);
+        }
+        resolve();
+      })
+      .fail(function (error) {
+        reject(error);
+      });
   });
 }
 function reloadMenuHeaderList(select) {
-  $.ajax({
-    url: "/Management/GetMenuHeaderList",
-    async: true,
-    type: "GET",
-  }).then(function (response) {
-    $(`#${select}`).html("<option></option>");
-    for (let menuHeader of response) {
-      $(`#${select}`).append(`<option value="${menuHeader.menuHeaderId}">${menuHeader.menuHeaderText}</option>`);
-    }
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "/Management/GetMenuHeaderList",
+      type: "GET",
+    })
+      .then(function (response) {
+        $(`#${select}`).html("<option></option>");
+        for (let menuHeader of response) {
+          $(`#${select}`).append(`<option value="${menuHeader.menuHeaderId}">${menuHeader.menuHeaderText}</option>`);
+        }
+        resolve();
+      })
+      .fail(function (error) {
+        reject(error);
+      });
   });
 }
 $("#add_menu_to_module").on("click", function () {
@@ -181,6 +205,8 @@ $("#MenuForm").on("submit", function (e) {
     contentType: false,
   }).then(function (result) {
     if (result) {
+      reloadMenuList("menuList");
+      reloadMenuList("editMenu");
       successAlert("Menü Başarıyla Oluşturuldu");
       removeInputValue("MenuForm");
     } else {
@@ -301,6 +327,61 @@ $("#edit_menuHeader").on("submit", function (e) {
     if (response) {
       $("#edit_menuheader_modal").modal("hide");
       reloadMenuHeaderList("editMenuHeader");
+    }
+  });
+});
+$("#editMenu").on("select2:select", function () {
+  var elem = $(this);
+  $("#edit_menu_modal").find("[data-menu-id]").attr("data-menu-id", elem.val());
+  $.ajax({
+    url: "/Management/GetMenu",
+    type: "GET",
+    data: { menuId: elem.val() },
+  })
+    .done(function (response) {
+      if (response && response.menuText !== undefined) {
+        reloadMenuHeaderList("editMenu_menuHeaders").then(function () {
+          $('#edit_menu_modal [name="MenuHeaderId"]').val(response.menuHeaderId).trigger("change");
+        });
+        reloadApplicationRoles("EditModalRoles").then(function () {
+          $('#edit_menu_modal [name="ApplicationRoleId"]').val(response.applicationRoleId).trigger("change");
+        });
+        $("#edit_menu_modal").modal("show");
+        $('#edit_menu_modal [name="MenuId"]').val(response.menuId);
+        $('#edit_menu_modal [name="MenuText"]').val(response.menuText);
+        $('#edit_menu_modal [name="MenuHref"]').val(response.menuHref);
+        $('[name="ModalMenuIconPath"]').val(response.menuIconPath);
+        menuTag.removeAllTags();
+        menuTag.addTags(response.menuKeyword.split("~"));
+        $("#EditModalMenuKeyword");
+        if (response.menuIconPath) {
+          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass(response.menuIconPath);
+        } else {
+          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass("fa-solid fa-icons");
+        }
+      }
+    })
+    .fail(function (error) {
+      reject(error);
+    });
+});
+$("#edit_menu_modal").on("hide.bs.modal", function () {
+  $("#editMenu").val(null).trigger("change");
+});
+$("#edit_menu").on("submit", function (e) {
+  e.preventDefault();
+  var formData = new FormData($(this)[0]);
+  formData.append("MenuIconPath", $('[name="ModalMenuIconPath"]').val());
+  $.ajax({
+    url: "/Management/UpdateMenu",
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+  }).done(function (response) {
+    if (response) {
+      $("#edit_menu_modal").modal("hide");
+      reloadMenuList("editMenu");
     }
   });
 });

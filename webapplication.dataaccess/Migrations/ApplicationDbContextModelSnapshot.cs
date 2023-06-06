@@ -121,6 +121,111 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("webapplication.entity.AdminMenu", b =>
+                {
+                    b.Property<int>("AdminMenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdminMenuHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdminMenuHref")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdminMenuIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdminMenuKeyword")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdminMenuText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ApplicationRoleId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("AdminMenuId");
+
+                    b.HasIndex("AdminMenuHeaderId");
+
+                    b.HasIndex("ApplicationRoleId");
+
+                    b.ToTable("AdminMenus");
+                });
+
+            modelBuilder.Entity("webapplication.entity.AdminMenuHeader", b =>
+                {
+                    b.Property<int>("AdminMenuHeaderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdminMenuHeaderIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdminMenuHeaderText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("AdminMenuHeaderId");
+
+                    b.ToTable("AdminMenuHeaders");
+                });
+
+            modelBuilder.Entity("webapplication.entity.AdminModule", b =>
+                {
+                    b.Property<int>("AdminModuleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdminModuleIconPath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdminModuleText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("Passive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("AdminModuleId");
+
+                    b.ToTable("AdminModules");
+                });
+
+            modelBuilder.Entity("webapplication.entity.AdminModuleMenu", b =>
+                {
+                    b.Property<int>("AdminModuleMenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdminMenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdminModuleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdminModuleMenuId");
+
+                    b.HasIndex("AdminMenuId");
+
+                    b.HasIndex("AdminModuleId");
+
+                    b.ToTable("AdminModuleMenus");
+                });
+
             modelBuilder.Entity("webapplication.entity.Identity.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -247,10 +352,10 @@ namespace webapplication.dataaccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Countryid")
+                    b.Property<int?>("Countryid")
                         .HasColumnType("int");
 
-                    b.Property<int>("Stateid")
+                    b.Property<int?>("Stateid")
                         .HasColumnType("int");
 
                     b.Property<string>("country_code")
@@ -316,7 +421,7 @@ namespace webapplication.dataaccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Countryid")
+                    b.Property<int?>("Countryid")
                         .HasColumnType("int");
 
                     b.Property<string>("country_code")
@@ -337,7 +442,7 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("states");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.Menu", b =>
+            modelBuilder.Entity("webapplication.entity.Menu", b =>
                 {
                     b.Property<int>("MenuId")
                         .ValueGeneratedOnAdd()
@@ -377,7 +482,7 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("Menus");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.MenuHeader", b =>
+            modelBuilder.Entity("webapplication.entity.MenuHeader", b =>
                 {
                     b.Property<int>("MenuHeaderId")
                         .ValueGeneratedOnAdd()
@@ -399,7 +504,7 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("MenuHeaders");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.Module", b =>
+            modelBuilder.Entity("webapplication.entity.Module", b =>
                 {
                     b.Property<int>("ModuleId")
                         .ValueGeneratedOnAdd()
@@ -421,7 +526,7 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.ModuleMenu", b =>
+            modelBuilder.Entity("webapplication.entity.ModuleMenu", b =>
                 {
                     b.Property<int>("ModuleMenuId")
                         .ValueGeneratedOnAdd()
@@ -493,6 +598,42 @@ namespace webapplication.dataaccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("webapplication.entity.AdminMenu", b =>
+                {
+                    b.HasOne("webapplication.entity.AdminMenuHeader", "AdminMenuHeader")
+                        .WithMany()
+                        .HasForeignKey("AdminMenuHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapplication.entity.Identity.ApplicationRole", "ApplicationRole")
+                        .WithMany()
+                        .HasForeignKey("ApplicationRoleId");
+
+                    b.Navigation("AdminMenuHeader");
+
+                    b.Navigation("ApplicationRole");
+                });
+
+            modelBuilder.Entity("webapplication.entity.AdminModuleMenu", b =>
+                {
+                    b.HasOne("webapplication.entity.AdminMenu", "AdminMenu")
+                        .WithMany()
+                        .HasForeignKey("AdminMenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapplication.entity.AdminModule", "AdminModule")
+                        .WithMany()
+                        .HasForeignKey("AdminModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdminMenu");
+
+                    b.Navigation("AdminModule");
+                });
+
             modelBuilder.Entity("webapplication.entity.Identity.ApplicationUser", b =>
                 {
                     b.HasOne("webapplication.entity.Location.City", "City")
@@ -518,15 +659,11 @@ namespace webapplication.dataaccess.Migrations
                 {
                     b.HasOne("webapplication.entity.Location.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("Countryid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Countryid");
 
                     b.HasOne("webapplication.entity.Location.State", "State")
                         .WithMany()
-                        .HasForeignKey("Stateid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Stateid");
 
                     b.Navigation("Country");
 
@@ -537,20 +674,18 @@ namespace webapplication.dataaccess.Migrations
                 {
                     b.HasOne("webapplication.entity.Location.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("Countryid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Countryid");
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.Menu", b =>
+            modelBuilder.Entity("webapplication.entity.Menu", b =>
                 {
                     b.HasOne("webapplication.entity.Identity.ApplicationRole", "ApplicationRole")
                         .WithMany()
                         .HasForeignKey("ApplicationRoleId");
 
-                    b.HasOne("webapplication.entity.Menu.MenuHeader", "MenuHeader")
+                    b.HasOne("webapplication.entity.MenuHeader", "MenuHeader")
                         .WithMany()
                         .HasForeignKey("MenuHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -561,15 +696,15 @@ namespace webapplication.dataaccess.Migrations
                     b.Navigation("MenuHeader");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Menu.ModuleMenu", b =>
+            modelBuilder.Entity("webapplication.entity.ModuleMenu", b =>
                 {
-                    b.HasOne("webapplication.entity.Menu.Menu", "Menu")
+                    b.HasOne("webapplication.entity.Menu", "Menu")
                         .WithMany()
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("webapplication.entity.Menu.Module", "Module")
+                    b.HasOne("webapplication.entity.Module", "Module")
                         .WithMany()
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)

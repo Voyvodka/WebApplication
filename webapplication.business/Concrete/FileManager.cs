@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Http;
 using webapplication.business.Abstracts;
 using webapplication.core.Utilities.Helpers;
-using webapplication.core.Utilities.Results;
-using webapplication.entity.Menu;
 namespace webapplication.business.Concrete
 {
     public class FileManager : IFileService

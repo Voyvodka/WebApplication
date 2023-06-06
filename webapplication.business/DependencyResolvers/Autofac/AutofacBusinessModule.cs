@@ -27,6 +27,14 @@ namespace webapplication.business.DependencyResolvers.Autofac
             builder.RegisterType<ModuleManager>().As<IModuleService>().SingleInstance();
             builder.RegisterType<ModuleMenuDal>().As<IModuleMenuDal>().SingleInstance();
             builder.RegisterType<ModuleMenuManager>().As<IModuleMenuService>().SingleInstance();
+            builder.RegisterType<AdminMenuDal>().As<IAdminMenuDal>().SingleInstance();
+            builder.RegisterType<AdminMenuManager>().As<IAdminMenuService>().SingleInstance();
+            builder.RegisterType<AdminMenuHeaderDal>().As<IAdminMenuHeaderDal>().SingleInstance();
+            builder.RegisterType<AdminMenuHeaderManager>().As<IAdminMenuHeaderService>().SingleInstance();
+            builder.RegisterType<AdminModuleDal>().As<IAdminModuleDal>().SingleInstance();
+            builder.RegisterType<AdminModuleManager>().As<IAdminModuleService>().SingleInstance();
+            builder.RegisterType<AdminModuleMenuDal>().As<IAdminModuleMenuDal>().SingleInstance();
+            builder.RegisterType<AdminModuleMenuManager>().As<IAdminModuleMenuService>().SingleInstance();
             builder.RegisterType<FileManager>().As<IFileService>().SingleInstance();
             builder.RegisterType<FileHelper>().As<IFileHelper>().SingleInstance();
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

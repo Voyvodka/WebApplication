@@ -187,6 +187,7 @@
             </div>
             <div class="modal-body p-3">
                 <div class="card-body">
+                    <input type="hidden" name="MenuId">
                     <div class="position-relative mb-3">
                         <label class="required form-label form-label-sm">Menü Adı</label>
                         <input type="text" required autocomplete="off" class="form-control form-control-solid form-control-sm" name="MenuText" placeholder="Menü"/>
@@ -221,60 +222,4 @@
         </form>
     </div>
 </div>
-<script>
-    $("#editMenu").on("select2:select", function () {
-  var elem = $(this);
-  $("#edit_menu_modal").find("[data-menu-id]").attr("data-menu-id", elem.val());
-  $.ajax({
-    url: "/Management/GetMenu",
-    type: "GET",
-    data: { menuId: elem.val() },
-  })
-    .done(function (response) {
-        console.log(response);
-      if (response && response.menuText !== undefined) {
-        reloadMenuHeaderList("editMenu_menuHeaders");
-        reloadApplicationRoles("EditModalRoles");
-        $("#edit_menu_modal").modal("show");
-        $('#edit_menu_modal [name="MenuText"]').val(response.menuText);
-        $('#edit_menu_modal [name="MenuHref"]').val(response.menuHref);
-        $('#edit_menu_modal [name="MenuHeaderId"]').val(response.menuHeaderId).trigger("change");
-        $('#edit_menu_modal [name="ApplicationRoleId"]').val(response.applicationRoleId).trigger("change");
-        $('[name="ModalMenuIconPath"]').val(response.menuIconPath);
-        menuTag.removeAllTags();
-        menuTag.addTags(response.menuKeyword.split("~"));
-        $('#EditModalMenuKeyword')
-        if (response.menurIconPath) {
-          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass(response.menuIconPath);
-        } else {
-          $('[name="ModalMenuIconPath"]').parent().find("button").find("i").removeAttr("class").addClass("fa-solid fa-icons");
-        }
-      }
-    })
-    .fail(function (e) {
-      console.error(e);
-    });
-});
-$("#edit_menu_modal").on("hide.bs.modal", function () {
-  $("#editMenu").val(null).trigger("change");
-});
-$("#edit_menu").on("submit", function (e) {
-  e.preventDefault();
-  var formData = new FormData($(this)[0]);
-  for(let item of formData){
-    console.log(item);
-  }
-  $.ajax({
-    url: "/Management/UpdateMenu",
-    type: "POST",
-    data: formData,
-  }).done(function (response) {
-    console.log(response);
-    if (response) {
-      $("#edit_menu_modal").modal("hide");
-      reloadMenuList("editMenu");
-    }
-  });
-});
-</script>
-<script src="/assets/js/page/Management.CreateMenu.js"></script>
+<script src="/assets/js/page/Management.MenuManagement.js"></script>
