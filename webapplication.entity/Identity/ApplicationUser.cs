@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using webapplication.entity.Location;
 namespace webapplication.entity.Identity
 {
     public class ApplicationUser : IdentityUser

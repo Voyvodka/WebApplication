@@ -172,7 +172,6 @@ function removeMenuFromModule(elem) {
   });
 }
 $("#ModuleForm").on("submit", function (e) {
-  console.log("aa");
   e.preventDefault();
   if (!checkInputs("ModuleForm")) return;
   var formData = new FormData(this);

@@ -13,6 +13,10 @@ namespace webapplication.business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<RoleGroupRoleDal>().As<IRoleGroupRoleDal>().SingleInstance();
+            builder.RegisterType<RoleGroupRoleManager>().As<IRoleGroupRoleService>().SingleInstance();
+            builder.RegisterType<RoleGroupDal>().As<IRoleGroupDal>().SingleInstance();
+            builder.RegisterType<RoleGroupManager>().As<IRoleGroupService>().SingleInstance();
             builder.RegisterType<CountryDal>().As<ICountryDal>().SingleInstance();
             builder.RegisterType<CountryManager>().As<ICountryService>().SingleInstance();
             builder.RegisterType<CityDal>().As<ICityDal>().SingleInstance();

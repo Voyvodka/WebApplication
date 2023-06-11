@@ -1,5 +1,5 @@
 using webapplication.core.Entity.Abstract;
-namespace webapplication.entity.Location
+namespace webapplication.entity
 {
     public class City : IEntity
     {

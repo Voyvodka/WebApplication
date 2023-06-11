@@ -1,5 +1,5 @@
+using webapplication.entity;
 using webapplication.entity.Identity;
-using webapplication.entity.Location;
 namespace webapplication.webui.ViewModels
 {
     public class AccountViewModel

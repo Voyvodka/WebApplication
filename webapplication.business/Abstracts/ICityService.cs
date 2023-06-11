@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using webapplication.core.Utilities.Results;
-using webapplication.entity.Location;
+using webapplication.entity;
 namespace webapplication.business.Abstracts
 {
     public interface ICityService

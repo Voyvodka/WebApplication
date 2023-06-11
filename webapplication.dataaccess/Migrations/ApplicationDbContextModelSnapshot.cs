@@ -226,6 +226,75 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("AdminModuleMenus");
                 });
 
+            modelBuilder.Entity("webapplication.entity.City", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Countryid")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Stateid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("country_code")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("country_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("state_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("state_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Countryid");
+
+                    b.HasIndex("Stateid");
+
+                    b.ToTable("cities");
+                });
+
+            modelBuilder.Entity("webapplication.entity.Country", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("capital")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("currency")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("currency_symbol")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("phonecode")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("region")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.ToTable("countries");
+                });
+
             modelBuilder.Entity("webapplication.entity.Identity.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -346,100 +415,45 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("webapplication.entity.Location.City", b =>
+            modelBuilder.Entity("webapplication.entity.Identity.RoleGroup", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("RoleGroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Countryid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Stateid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("country_code")
-                        .IsRequired()
-                        .HasColumnType("varchar(1)");
-
-                    b.Property<int>("country_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("state_code")
+                    b.Property<string>("NormalizedName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("state_id")
-                        .HasColumnType("int");
+                    b.HasKey("RoleGroupId");
 
-                    b.HasKey("id");
-
-                    b.HasIndex("Countryid");
-
-                    b.HasIndex("Stateid");
-
-                    b.ToTable("cities");
+                    b.ToTable("aspnetrolegroups");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Location.Country", b =>
+            modelBuilder.Entity("webapplication.entity.Identity.RoleGroupRole", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("RoleGroupRoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("capital")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("currency")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("currency_symbol")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("name")
+                    b.Property<string>("ApplicationRoleId")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<string>("phonecode")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("region")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("id");
-
-                    b.ToTable("countries");
-                });
-
-            modelBuilder.Entity("webapplication.entity.Location.State", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("RoleGroupId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Countryid")
-                        .HasColumnType("int");
+                    b.HasKey("RoleGroupRoleId");
 
-                    b.Property<string>("country_code")
-                        .IsRequired()
-                        .HasColumnType("varchar(1)");
+                    b.HasIndex("ApplicationRoleId");
 
-                    b.Property<int>("country_id")
-                        .HasColumnType("int");
+                    b.HasIndex("RoleGroupId");
 
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Countryid");
-
-                    b.ToTable("states");
+                    b.ToTable("aspnetrolegrouproles");
                 });
 
             modelBuilder.Entity("webapplication.entity.Menu", b =>
@@ -547,6 +561,33 @@ namespace webapplication.dataaccess.Migrations
                     b.ToTable("ModuleMenus");
                 });
 
+            modelBuilder.Entity("webapplication.entity.State", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Countryid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("country_code")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("country_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Countryid");
+
+                    b.ToTable("states");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("webapplication.entity.Identity.ApplicationRole", null)
@@ -634,17 +675,32 @@ namespace webapplication.dataaccess.Migrations
                     b.Navigation("AdminModule");
                 });
 
+            modelBuilder.Entity("webapplication.entity.City", b =>
+                {
+                    b.HasOne("webapplication.entity.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("Countryid");
+
+                    b.HasOne("webapplication.entity.State", "State")
+                        .WithMany()
+                        .HasForeignKey("Stateid");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("State");
+                });
+
             modelBuilder.Entity("webapplication.entity.Identity.ApplicationUser", b =>
                 {
-                    b.HasOne("webapplication.entity.Location.City", "City")
+                    b.HasOne("webapplication.entity.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId");
 
-                    b.HasOne("webapplication.entity.Location.Country", "Country")
+                    b.HasOne("webapplication.entity.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("webapplication.entity.Location.State", "State")
+                    b.HasOne("webapplication.entity.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId");
 
@@ -655,28 +711,23 @@ namespace webapplication.dataaccess.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("webapplication.entity.Location.City", b =>
+            modelBuilder.Entity("webapplication.entity.Identity.RoleGroupRole", b =>
                 {
-                    b.HasOne("webapplication.entity.Location.Country", "Country")
+                    b.HasOne("webapplication.entity.Identity.ApplicationRole", "ApplicationRole")
                         .WithMany()
-                        .HasForeignKey("Countryid");
+                        .HasForeignKey("ApplicationRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("webapplication.entity.Location.State", "State")
+                    b.HasOne("webapplication.entity.Identity.RoleGroup", "RoleGroup")
                         .WithMany()
-                        .HasForeignKey("Stateid");
+                        .HasForeignKey("RoleGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Country");
+                    b.Navigation("ApplicationRole");
 
-                    b.Navigation("State");
-                });
-
-            modelBuilder.Entity("webapplication.entity.Location.State", b =>
-                {
-                    b.HasOne("webapplication.entity.Location.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("Countryid");
-
-                    b.Navigation("Country");
+                    b.Navigation("RoleGroup");
                 });
 
             modelBuilder.Entity("webapplication.entity.Menu", b =>
@@ -713,6 +764,15 @@ namespace webapplication.dataaccess.Migrations
                     b.Navigation("Menu");
 
                     b.Navigation("Module");
+                });
+
+            modelBuilder.Entity("webapplication.entity.State", b =>
+                {
+                    b.HasOne("webapplication.entity.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("Countryid");
+
+                    b.Navigation("Country");
                 });
 #pragma warning restore 612, 618
         }

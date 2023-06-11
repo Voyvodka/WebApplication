@@ -280,5 +280,83 @@ namespace webapplication.webui.Controllers
         public List<AdminModule> GetAdminModuleList() => _adminModuleService.GetAll(c => !c.Passive).Data;
         public List<AdminMenu> GetAdminMenuList() => _adminMenuService.GetAll(c => !c.Passive).Data;
         public List<AdminMenuHeader> GetAdminMenuHeaderList() => _adminMenuHeaderService.GetAll(c => !c.Passive).Data;
+        public IActionResult RoleManagement()
+        {
+            ViewData["Title"] = "Rol Yönetimi";
+            return View();
+        }
+        public async Task<object> GetRolesObject(int draw, int start, int length, int sortColumn, string sortColumnDir, string searchValue, string columnName)
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            columnName = char.ToUpper(columnName[0]) + columnName.Substring(1);
+            var propertyInfo = typeof(ApplicationRole).GetProperty(columnName);
+            var filteredData = roles.AsQueryable();
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                filteredData = filteredData.Where(r => r.Name.ToLower().Contains(searchValue.ToLower()));
+            }
+            if (sortColumnDir.ToLower() == "asc")
+            {
+                filteredData = filteredData.OrderBy(x => propertyInfo.GetValue(x, null));
+            }
+            else
+            {
+                filteredData = filteredData.OrderByDescending(x => propertyInfo.GetValue(x, null));
+            }
+            filteredData = filteredData.Skip(start).Take(length);
+            var filteredRecords = filteredData.Count();
+            var response = new
+            {
+                draw = draw,
+                recordsTotal = roles.Count(),
+                recordsFiltered = roles.Count(),
+                data = filteredData
+            };
+            return Ok(response);
+        }
+        [HttpPost]
+        public async Task<bool> SaveRole(ApplicationRole role)
+        {
+            var existingRole = await _roleManager.FindByNameAsync(role.Name);
+            if (existingRole != null)
+            {
+                return false;
+            }
+            var result = await _roleManager.CreateAsync(role);
+            return result.Succeeded;
+        }
+        [HttpPost]
+        public async Task<bool> RemoveRoleByName(string roleName)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
+            if (role != null)
+            {
+                var result = await _roleManager.DeleteAsync(role);
+                return result.Succeeded;
+            }
+            return false;
+        }
+        [HttpPost]
+        public async Task<bool> RemoveRolesByName(string[] roleNames)
+        {
+            foreach (var roleName in roleNames)
+            {
+                var role = await _roleManager.FindByNameAsync(roleName);
+                if (role != null)
+                    await _roleManager.DeleteAsync(role);
+            }
+            return true;
+        }
+        public async Task<bool> EditRole(ApplicationRole role)
+        {
+            var existingRole = await _roleManager.FindByIdAsync(role.Id);
+            if (existingRole != null)
+            {
+                existingRole.Name = role.Name;
+                var result = await _roleManager.UpdateAsync(existingRole);
+                return result.Succeeded;
+            }
+            return false;
+        }
     }
 }

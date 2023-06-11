@@ -1,12 +1,13 @@
 using webapplication.entity.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using webapplication.entity.Location;
 using webapplication.entity;
 namespace webapplication.dataaccess.Contexts
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        public DbSet<RoleGroup> aspnetrolegroups { get; set; }
+        public DbSet<RoleGroupRole> aspnetrolegrouproles { get; set; }
         public DbSet<Country> countries { get; set; }
         public DbSet<City> cities { get; set; }
         public DbSet<State> states { get; set; }

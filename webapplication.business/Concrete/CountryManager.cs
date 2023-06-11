@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using webapplication.business.Abstracts;
 using webapplication.core.Utilities.Results;
-using webapplication.entity.Location;
+using webapplication.entity;
 using webapplication.dataaccess.Abstracts;
 namespace webapplication.business.Concrete
 {
