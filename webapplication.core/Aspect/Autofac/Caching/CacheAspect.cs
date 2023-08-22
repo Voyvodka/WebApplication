@@ -1,27 +1,19 @@
 ﻿using Castle.DynamicProxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using webapplication.core.Utilities.Interceptors;
 using webapplication.core.Utilities.IoC;
 using webapplication.core.CrossCuttingConcerns.Caching;
-
 namespace webapplication.core.Aspect.Autofac.Caching
 {
     public class CacheAspect : MethodInterception
     {
         private int _duration;
         private ICacheManager _cacheManager;
-
         public CacheAspect(int duration = 60)
         {
             _duration = duration;
             _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
         }
-
         public override void Intercept(IInvocation invocation)
         {
             var methodName = string.Format($"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}");

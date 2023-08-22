@@ -41,7 +41,7 @@ namespace webapplication.webui.Controllers
             var model = new AccountViewModel
             {
                 User = user,
-                Countries = _countryService.GetAll().Data,
+                Countries = _countryService.GetList(),
             };
             return View(model);
         }

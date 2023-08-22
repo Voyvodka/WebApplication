@@ -1,8 +1,8 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using webapplication.core.Entity.Abstract;
-namespace webapplication.core.DataAccess
+namespace webapplication.business.Abstracts
 {
-    public interface IEntityRepository<T> where T : IEntity
+    public interface IBaseCrudService<T> where T : IEntity, new()
     {
         T Get(Expression<Func<T, bool>> filter, bool checkPassive = true, params Expression<Func<T, object>>[] includeProperties);
         List<T> GetList(Expression<Func<T, bool>>? filter = null, bool checkPassive = true, params Expression<Func<T, object>>[] includeProperties);

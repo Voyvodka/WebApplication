@@ -1,13 +1,7 @@
 ﻿using Castle.DynamicProxy;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using webapplication.core.CrossCuttingConcerns.Validation;
 using webapplication.core.Utilities.Interceptors;
-
 namespace webapplication.core.Aspect.Autofac.Validation
 {
     public class ValidationAspect : MethodInterception
@@ -19,10 +13,8 @@ namespace webapplication.core.Aspect.Autofac.Validation
             {
                 throw new Exception("Bu bir doğrulama sınıfı değil.");
             }
-
             _validatorType = validatorType;
         }
-
         protected override void OnBefore(IInvocation invocation)
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType);

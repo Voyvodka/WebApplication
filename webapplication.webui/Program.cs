@@ -91,6 +91,11 @@ app.UseEndpoints(endpoints =>
         defaults: new { controller = "Management", action = "RoleManagement" }
     );
     endpoints.MapControllerRoute(
+        name: "yonetim/rol-grup-yonetimi",
+        pattern: "yonetim/rol-grup-yonetimi",
+        defaults: new { controller = "Management", action = "RoleGroupManagement" }
+    );
+    endpoints.MapControllerRoute(
         name: "yonetim/adminmenu-yonetimi",
         pattern: "yonetim/adminmenu-yonetimi",
         defaults: new { controller = "Management", action = "AdminMenuManagement" }

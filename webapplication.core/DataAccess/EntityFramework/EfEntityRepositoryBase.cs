@@ -1,62 +1,153 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using webapplication.core.DataAccess;
 using webapplication.core.Entity.Abstract;
 namespace webapplication.core.DataAccess.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
-         where TEntity : class, IEntity, new()
+         where TEntity : IEntity
          where TContext : DbContext, new()
     {
         public void Add(TEntity entity)
         {
-            using (TContext context = new TContext())
+            using var context = new TContext();
+            context.Set<TEntity>().Add(entity);
+            context.SaveChanges();
+        }
+        public async Task AddAsync(TEntity entity)
+        {
+            using var context = new TContext();
+            await context.Set<TEntity>().AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>>? filter = null)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>();
+            if (filter != null)
             {
-                var addedData = context.Entry(entity);
-                addedData.State = EntityState.Added;
-                context.SaveChanges();
+                query = query.Where(filter);
             }
+            return await query.AnyAsync();
+        }
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>>? filter = null)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.CountAsync();
         }
         public void Delete(TEntity entity)
         {
-            using (TContext context = new TContext())
+            using var context = new TContext();
+            context.Set<TEntity>().Remove(entity);
+            context.SaveChanges();
+        }
+        public async Task DeleteAsync(TEntity entity)
+        {
+            using var context = new TContext();
+            context.Set<TEntity>().Remove(entity);
+            await context.SaveChangesAsync();
+        }
+        public TEntity Get(Expression<Func<TEntity, bool>> filter, bool checkPassive = true, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>().Where(filter);
+            if (checkPassive)
             {
-                var deletedData = context.Entry(entity);
-                deletedData.State = EntityState.Deleted;
-                context.SaveChanges();
+                query = query.Where(e => !e.IsPassive);
             }
+            if (includeProperties != null)
+            {
+                query = includeProperties.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query.SingleOrDefault();
+        }
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, bool checkPassive = true, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>().OrderByDescending(c => c.CreatedDate);
+            if (checkPassive)
+            {
+                Expression<Func<TEntity, bool>> passiveExpression = c => !c.IsPassive;
+                query = query.Where(passiveExpression);
+            }
+            query = query.Where(filter);
+            if (includeProperties != null)
+            {
+                query = includeProperties.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return await query.FirstOrDefaultAsync();
+        }
+        public List<TEntity> GetList(Expression<Func<TEntity, bool>>? filter = null, bool checkPassive = true, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>().OrderByDescending(c => c.CreatedDate);
+            if (checkPassive)
+            {
+                Expression<Func<TEntity, bool>> passiveExpression = c => c.IsPassive == false;
+                query = query.Where(passiveExpression);
+            }
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (includeProperties != null)
+            {
+                query = includeProperties.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query.ToList();
+        }
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? filter = null, bool checkPassive = true, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (checkPassive)
+            {
+                query = query.Where(e => !e.IsPassive);
+            }
+            if (includeProperties != null)
+            {
+                query = includeProperties.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return await query.ToListAsync();
+        }
+        public IQueryable<TEntity> GetQueryableList(Expression<Func<TEntity, bool>>? filter = null, bool checkPassive = true, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            using var context = new TContext();
+            IQueryable<TEntity> query = context.Set<TEntity>().OrderByDescending(c => c.CreatedDate);
+            if (checkPassive)
+            {
+                Expression<Func<TEntity, bool>> passiveExpression = c => c.IsPassive == false;
+                query = query.Where(passiveExpression);
+            }
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (includeProperties != null)
+            {
+                query = includeProperties.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query.ToList().AsQueryable();
         }
         public void Update(TEntity entity)
         {
-            using (TContext context = new TContext())
-            {
-                var updatedData = context.Entry(entity);
-                updatedData.State = EntityState.Modified;
-                context.SaveChanges();
-            }
+            using var context = new TContext();
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
         }
-        public List<TEntity> GetList(Expression<Func<TEntity, bool>>? filter)
+        public async Task UpdateAsync(TEntity entity)
         {
-            using (TContext context = new TContext())
-            {
-                if (filter == null)
-                {
-                    return context.Set<TEntity>().ToList();
-                }
-                return context.Set<TEntity>().Where(filter).ToList();
-            }
-        }
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
-        {
-            using (TContext context = new TContext())
-            {
-                return context.Set<TEntity>().SingleOrDefault(filter) ?? default!;
-                // return context.Set<TEntity>().Where(filter).SingleOrDefault();
-            }
+            using var context = new TContext();
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
     }
 }

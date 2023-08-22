@@ -13,6 +13,7 @@ namespace webapplication.webui.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IRoleGroupService _roleGroupService;
         private readonly IMenuService _menuService;
         private readonly IMenuHeaderService _menuHeaderService;
         private readonly IModuleService _moduleService;
@@ -22,8 +23,9 @@ namespace webapplication.webui.Controllers
         private readonly IAdminModuleService _adminModuleService;
         private readonly IAdminModuleMenuService _adminModuleMenuService;
         private readonly IFileService _fileService;
-        public ManagementController(RoleManager<ApplicationRole> roleManager, IFileService fileService, IMenuService menuService, IMenuHeaderService menuHeaderService, IModuleService moduleService, IModuleMenuService moduleMenuService, IAdminMenuService adminMenuService, IAdminMenuHeaderService adminMenuHeaderService, IAdminModuleService adminModuleService, IAdminModuleMenuService adminModuleMenuService, UserManager<ApplicationUser> userManager)
+        public ManagementController(RoleManager<ApplicationRole> roleManager, IRoleGroupService roleGroupService, IFileService fileService, IMenuService menuService, IMenuHeaderService menuHeaderService, IModuleService moduleService, IModuleMenuService moduleMenuService, IAdminMenuService adminMenuService, IAdminMenuHeaderService adminMenuHeaderService, IAdminModuleService adminModuleService, IAdminModuleMenuService adminModuleMenuService, UserManager<ApplicationUser> userManager)
         {
+            _roleGroupService = roleGroupService;
             _fileService = fileService;
             _menuService = menuService;
             _menuHeaderService = menuHeaderService;
@@ -83,22 +85,22 @@ namespace webapplication.webui.Controllers
         {
             var data = new
             {
-                moduleMenus = _moduleMenuService.GetAll().Data,
-                modules = _moduleService.GetAll().Data,
+                moduleMenus = _moduleMenuService.GetList(),
+                modules = _moduleService.GetList(),
             };
             data.moduleMenus.ForEach(item =>
             {
-                item.Menu = _menuService.GetSingle(c => c.MenuId == item.MenuId).Data;
-                item.Menu.MenuHeader = _menuHeaderService.GetSingle(c => c.MenuHeaderId == item.Menu.MenuHeaderId).Data;
+                item.Menu = _menuService.Get(c => c.MenuId == item.MenuId);
+                item.Menu.MenuHeader = _menuHeaderService.Get(c => c.MenuHeaderId == item.Menu.MenuHeaderId);
             });
             return data;
         }
         [HttpPost]
         public bool AddMenuToModule(int moduleId, int menuId)
         {
-            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
-            var menu = _menuService.GetSingle(c => c.MenuId == menuId).Data;
-            if (menu == null || module == null || _moduleMenuService.GetAll(c => c.ModuleId == moduleId && c.MenuId == menuId).Data.Any()) return false;
+            var module = _moduleService.Get(c => c.ModuleId == moduleId);
+            var menu = _menuService.Get(c => c.MenuId == menuId);
+            if (menu == null || module == null || _moduleMenuService.GetList(c => c.ModuleId == moduleId && c.MenuId == menuId).Any()) return false;
             _moduleMenuService.Add(new ModuleMenu
             {
                 MenuId = menuId,
@@ -109,9 +111,9 @@ namespace webapplication.webui.Controllers
         [HttpPost]
         public bool RemoveModuleMenus(int moduleId, int menuId, int moduleMenuId)
         {
-            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
-            var menu = _menuService.GetSingle(c => c.MenuId == menuId).Data;
-            var moduleMenu = _moduleMenuService.GetSingle(c => c.ModuleMenuId == moduleMenuId).Data;
+            var module = _moduleService.Get(c => c.ModuleId == moduleId);
+            var menu = _menuService.Get(c => c.MenuId == menuId);
+            var moduleMenu = _moduleMenuService.Get(c => c.ModuleMenuId == moduleMenuId);
             if (module == null || menu == null || moduleMenu == null) return false;
             if (moduleMenu.ModuleId != module.ModuleId && moduleMenu.MenuId != menu.MenuId) return false;
             _moduleMenuService.Delete(moduleMenu);
@@ -119,7 +121,7 @@ namespace webapplication.webui.Controllers
         }
         public bool UpdateModule(int moduleId, string moduleText, string moduleIcon)
         {
-            var module = _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
+            var module = _moduleService.Get(c => c.ModuleId == moduleId);
             if (moduleIcon == null) moduleIcon = "";
             if (module == null || String.IsNullOrEmpty(moduleText)) return false;
             module.ModuleText = moduleText;
@@ -129,7 +131,7 @@ namespace webapplication.webui.Controllers
         }
         public bool UpdateMenuHeader(int menuHeaderId, string menuHeaderText, string menuHeaderIcon)
         {
-            var menuHeader = _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
+            var menuHeader = _menuHeaderService.Get(c => c.MenuHeaderId == menuHeaderId);
             if (menuHeader == null || String.IsNullOrEmpty(menuHeaderText)) return false;
             menuHeader.MenuHeaderText = menuHeaderText;
             if (menuHeaderIcon == null) menuHeaderIcon = "";
@@ -154,12 +156,12 @@ namespace webapplication.webui.Controllers
             _menuService.Update(menu);
             return true;
         }
-        public MenuHeader GetMenuHeader(int menuHeaderId) => _menuHeaderService.GetSingle(c => c.MenuHeaderId == menuHeaderId).Data;
-        public Module GetModule(int moduleId) => _moduleService.GetSingle(c => c.ModuleId == moduleId).Data;
-        public Menu GetMenu(int menuId) => _menuService.GetSingle(c => c.MenuId == menuId).Data;
-        public List<Module> GetModuleList() => _moduleService.GetAll(c => !c.Passive).Data;
-        public List<Menu> GetMenuList() => _menuService.GetAll(c => !c.Passive).Data;
-        public List<MenuHeader> GetMenuHeaderList() => _menuHeaderService.GetAll(c => !c.Passive).Data;
+        public MenuHeader GetMenuHeader(int menuHeaderId) => _menuHeaderService.Get(c => c.MenuHeaderId == menuHeaderId);
+        public Module GetModule(int moduleId) => _moduleService.Get(c => c.ModuleId == moduleId);
+        public Menu GetMenu(int menuId) => _menuService.Get(c => c.MenuId == menuId);
+        public List<Module> GetModuleList() => _moduleService.GetList(c => !c.Passive);
+        public List<Menu> GetMenuList() => _menuService.GetList(c => !c.Passive);
+        public List<MenuHeader> GetMenuHeaderList() => _menuHeaderService.GetList(c => !c.Passive);
         public async Task<List<ApplicationRole>> GetRoles() => await _roleManager.Roles.ToListAsync();
         public IActionResult AdminMenuManagement()
         {
@@ -203,22 +205,22 @@ namespace webapplication.webui.Controllers
         {
             var data = new
             {
-                moduleMenus = _adminModuleMenuService.GetAll().Data,
-                modules = _adminModuleService.GetAll().Data,
+                moduleMenus = _adminModuleMenuService.GetList(),
+                modules = _adminModuleService.GetList(),
             };
             data.moduleMenus.ForEach(item =>
             {
-                item.AdminMenu = _adminMenuService.GetSingle(c => c.AdminMenuId == item.AdminMenuId).Data;
-                item.AdminMenu.AdminMenuHeader = _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == item.AdminMenu.AdminMenuHeaderId).Data;
+                item.AdminMenu = _adminMenuService.Get(c => c.AdminMenuId == item.AdminMenuId);
+                item.AdminMenu.AdminMenuHeader = _adminMenuHeaderService.Get(c => c.AdminMenuHeaderId == item.AdminMenu.AdminMenuHeaderId);
             });
             return data;
         }
         [HttpPost]
         public bool AdminAddMenuToModule(int moduleId, int menuId)
         {
-            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
-            var menu = _adminMenuService.GetSingle(c => c.AdminMenuId == menuId).Data;
-            if (menu == null || module == null || _adminModuleMenuService.GetAll(c => c.AdminModuleId == moduleId && c.AdminMenuId == menuId).Data.Any()) return false;
+            var module = _adminModuleService.Get(c => c.AdminModuleId == moduleId);
+            var menu = _adminMenuService.Get(c => c.AdminMenuId == menuId);
+            if (menu == null || module == null || _adminModuleMenuService.GetList(c => c.AdminModuleId == moduleId && c.AdminMenuId == menuId).Any()) return false;
             _adminModuleMenuService.Add(new AdminModuleMenu
             {
                 AdminMenuId = menuId,
@@ -229,9 +231,9 @@ namespace webapplication.webui.Controllers
         [HttpPost]
         public bool AdminRemoveModuleMenus(int moduleId, int menuId, int moduleMenuId)
         {
-            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
-            var menu = _adminMenuService.GetSingle(c => c.AdminMenuId == menuId).Data;
-            var moduleMenu = _adminModuleMenuService.GetSingle(c => c.AdminModuleMenuId == moduleMenuId).Data;
+            var module = _adminModuleService.Get(c => c.AdminModuleId == moduleId);
+            var menu = _adminMenuService.Get(c => c.AdminMenuId == menuId);
+            var moduleMenu = _adminModuleMenuService.Get(c => c.AdminModuleMenuId == moduleMenuId);
             if (module == null || menu == null || moduleMenu == null) return false;
             if (moduleMenu.AdminModuleId != module.AdminModuleId && moduleMenu.AdminMenuId != menu.AdminMenuId) return false;
             _adminModuleMenuService.Delete(moduleMenu);
@@ -239,7 +241,7 @@ namespace webapplication.webui.Controllers
         }
         public bool UpdateAdminModule(int moduleId, string moduleText, string moduleIcon)
         {
-            var module = _adminModuleService.GetSingle(c => c.AdminModuleId == moduleId).Data;
+            var module = _adminModuleService.Get(c => c.AdminModuleId == moduleId);
             if (moduleIcon == null) moduleIcon = "";
             if (module == null || String.IsNullOrEmpty(moduleText)) return false;
             module.AdminModuleText = moduleText;
@@ -249,7 +251,7 @@ namespace webapplication.webui.Controllers
         }
         public bool UpdateAdminMenuHeader(int menuHeaderId, string menuHeaderText, string menuHeaderIcon)
         {
-            var menuHeader = _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == menuHeaderId).Data;
+            var menuHeader = _adminMenuHeaderService.Get(c => c.AdminMenuHeaderId == menuHeaderId);
             if (menuHeader == null || String.IsNullOrEmpty(menuHeaderText)) return false;
             menuHeader.AdminMenuHeaderText = menuHeaderText;
             if (menuHeaderIcon == null) menuHeaderIcon = "";
@@ -274,12 +276,12 @@ namespace webapplication.webui.Controllers
             _adminMenuService.Update(menu);
             return true;
         }
-        public AdminMenuHeader GetAdminMenuHeader(int adminMenuHeaderId) => _adminMenuHeaderService.GetSingle(c => c.AdminMenuHeaderId == adminMenuHeaderId).Data;
-        public AdminModule GetAdminModule(int adminModuleId) => _adminModuleService.GetSingle(c => c.AdminModuleId == adminModuleId).Data;
-        public AdminMenu GetAdminMenu(int adminMenuId) => _adminMenuService.GetSingle(c => c.AdminMenuId == adminMenuId).Data;
-        public List<AdminModule> GetAdminModuleList() => _adminModuleService.GetAll(c => !c.Passive).Data;
-        public List<AdminMenu> GetAdminMenuList() => _adminMenuService.GetAll(c => !c.Passive).Data;
-        public List<AdminMenuHeader> GetAdminMenuHeaderList() => _adminMenuHeaderService.GetAll(c => !c.Passive).Data;
+        public AdminMenuHeader GetAdminMenuHeader(int adminMenuHeaderId) => _adminMenuHeaderService.Get(c => c.AdminMenuHeaderId == adminMenuHeaderId);
+        public AdminModule GetAdminModule(int adminModuleId) => _adminModuleService.Get(c => c.AdminModuleId == adminModuleId);
+        public AdminMenu GetAdminMenu(int adminMenuId) => _adminMenuService.Get(c => c.AdminMenuId == adminMenuId);
+        public List<AdminModule> GetAdminModuleList() => _adminModuleService.GetList(c => !c.Passive);
+        public List<AdminMenu> GetAdminMenuList() => _adminMenuService.GetList(c => !c.Passive);
+        public List<AdminMenuHeader> GetAdminMenuHeaderList() => _adminMenuHeaderService.GetList(c => !c.Passive);
         public IActionResult RoleManagement()
         {
             ViewData["Title"] = "Rol Yönetimi";
@@ -357,6 +359,14 @@ namespace webapplication.webui.Controllers
                 return result.Succeeded;
             }
             return false;
+        }
+        public IActionResult RoleGroupManagement()
+        {
+            return View();
+        }
+        public List<RoleGroup> GetRoleGroups()
+        {
+            return _roleGroupService.GetList();
         }
     }
 }
